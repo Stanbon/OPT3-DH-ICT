@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Spel {
-    List <Speler> spelers;
-    List<Kamer> kamers;
+    private List <Speler> spelers;
+    private List<Kamer> kamers;
 
     public void Spel(){
         this.spelers = new ArrayList<>();
