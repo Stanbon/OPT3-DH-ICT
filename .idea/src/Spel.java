@@ -2,15 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Spel {
-    private ArrayList<Speler> spelers;
-    private ArrayList<Kamer> kamers;
+    private List<Speler> spelers;
+    private List<Kamer> kamers;
 
-
-    public Spel(){
-        this.spelers = new ArrayList<Speler>();
+    public void Spel(){
+        this.spelers = new ArrayList<>();
         this.kamers = new ArrayList<>();
     }
-
 
     public void voegSpelerToe(Speler speler){
         this.spelers.add(speler);
@@ -28,19 +26,19 @@ public class Spel {
         System.out.println("Het spel is gestopt!");
     }
 
-    public ArrayList<Speler> getSpelers() {
+    public List<Speler> getSpelers() {
         return spelers;
     }
 
-    public void setSpelers(ArrayList<Speler> spelers) {
+    public void setSpelers(List<Speler> spelers) {
         this.spelers = spelers;
     }
 
-    public ArrayList<Kamer> getKamers() {
+    public List<Kamer> getKamers() {
         return kamers;
     }
 
-    public void setKamers(ArrayList<Kamer> kamers) {
+    public void setKamers(List<Kamer> kamers) {
         this.kamers = kamers;
     }
 
