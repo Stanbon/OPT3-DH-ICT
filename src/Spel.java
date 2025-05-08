@@ -9,7 +9,7 @@ public class Spel {
 
 
     public Spel(){
-        this.spelers = new ArrayList<Speler>();
+        this.spelers = new ArrayList<>();
         this.kamers = new ArrayList<>();
     }
 
