@@ -29,9 +29,13 @@ public class Spel {
         this.kamers.remove(kamer);
     }
 
+    public ArrayList<Kamer> getKamers() {
+        return kamers;
+    }
 
-
-
+    public ArrayList<Speler> getSpelers() {
+        return spelers;
+    }
 
     public void startSpel(){
         System.out.println("Het spel is gestart!");
