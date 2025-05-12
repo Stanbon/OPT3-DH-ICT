@@ -1,7 +1,9 @@
 abstract class Kamer {
 
+
+
     protected String quiz;
-    protected Monster obstakel;
+
     protected String a;
     protected String b;
     protected String c;
@@ -9,15 +11,36 @@ abstract class Kamer {
     protected String antwoord;
 
 
-    public Kamer(String quiz, Monster obstakel, String a, String b, String c, String d, String antwoord) {
+
+    public Kamer(String quiz, String a, String b, String c, String d, String antwoord) {
         this.quiz = quiz;
-        this.obstakel = obstakel;
+
         this.a = a;
         this.b = b;
         this.c = c;
         this.d = d;
         this.antwoord = antwoord;
     }
+
+    public final void startKamer() {
+        printIntroductie();
+        printOpdracht();
+        controleerAntwoord();
+        printResultaat();
+        printFeedback();
+    }
+
+    public abstract void printFeedback();
+
+    public abstract void printResultaat();
+    public abstract void printOpdracht();
+
+
+    public abstract void printIntroductie();
+    public  abstract void controleerAntwoord();
+
+
+
     public abstract boolean checkAntwoord (String userAnswer);
 
     public String getQuiz() {
