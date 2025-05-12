@@ -1,8 +1,8 @@
 class KamerPlanning extends Kamer {
 
 
-    public KamerPlanning(String quiz, Monster obstakel, String a, String b, String c, String d, String antwoord) {
-        super(quiz, obstakel, a, b, c, d, antwoord);
+    public KamerPlanning(String quiz, String antwoord) {
+        super(quiz, antwoord);
     }
 
     @Override
@@ -27,7 +27,7 @@ class KamerPlanning extends Kamer {
 
     @Override
     public void printIntroductie() {
-
+        System.out.println("Welkom in de kamer van de Sprint Planning!");
     }
 
     @Override

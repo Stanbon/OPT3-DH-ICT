@@ -1,7 +1,7 @@
 public class KamerTIA extends Kamer{
 
-    public KamerTIA(String quiz, Monster obstakel, String a, String b, String c, String d, String antwoord) {
-        super(quiz, a, b, c, d, antwoord);
+    public KamerTIA(String quiz, String antwoord) {
+        super(quiz, antwoord);
     }
 
     @Override
