@@ -1,7 +1,7 @@
 public class KamerDailyScrum extends Kamer {
 
-    public KamerDailyScrum(String quiz, String a, String b, String c, String d, String antwoord) {
-        super(quiz, a, b, c, d, antwoord);
+    public KamerDailyScrum(String quiz, String antwoord) {
+        super(quiz,antwoord);
     }
 
     @Override
@@ -22,11 +22,12 @@ public class KamerDailyScrum extends Kamer {
     @Override
     public void printOpdracht() {
 
+
     }
 
     @Override
     public void printIntroductie() {
-
+        System.out.println("Welkom in de Daily Scrum kamer!");
     }
 
     @Override

@@ -1,8 +1,8 @@
 public class KamerScrumBoard extends Kamer{
 
 
-    public KamerScrumBoard(String quiz, Monster obstakel, String a, String b, String c, String d, String antwoord) {
-        super(quiz, a, b, c, d, antwoord);
+    public KamerScrumBoard(String quiz, String antwoord) {
+        super(quiz, antwoord);
     }
 
     @Override
