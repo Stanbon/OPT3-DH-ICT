@@ -21,12 +21,12 @@ public class KamerTIA extends Kamer{
 
     @Override
     public void printOpdracht() {
-
+        System.out.println("Wat is de rol van de TIA in het Scrum proces?");
     }
 
     @Override
     public void printIntroductie() {
-
+        System.out.println("Welkom in de kamer van de TIA!");
     }
 
     @Override
