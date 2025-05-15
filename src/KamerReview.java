@@ -20,12 +20,12 @@ class KamerReview extends Kamer {
 
     @Override
     public void printOpdracht() {
-
+        System.out.println("Interpreteer de feedback van de stekeholders en schat de impact er van in");
     }
 
     @Override
     public void printIntroductie() {
-
+        System.out.println("Welkom in de Sprint Review kamer!");
     }
 
     @Override

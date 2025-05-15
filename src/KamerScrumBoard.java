@@ -22,12 +22,12 @@ public class KamerScrumBoard extends Kamer{
 
     @Override
     public void printOpdracht() {
-
+        System.out.println("Richt de Scrum Board in met de juiste items.");
     }
 
     @Override
     public void printIntroductie() {
-
+        System.out.println("Welkom in de Scrum Board kamer!");
     }
 
     @Override

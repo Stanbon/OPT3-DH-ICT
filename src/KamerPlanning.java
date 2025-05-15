@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class KamerPlanning extends Kamer {
 
 
@@ -22,6 +24,7 @@ class KamerPlanning extends Kamer {
 
     @Override
     public void printOpdracht() {
+        System.out.println("Welke taken passen bij de Sprint Planning?");
 
     }
 

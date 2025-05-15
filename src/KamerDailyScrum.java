@@ -21,7 +21,7 @@ public class KamerDailyScrum extends Kamer {
 
     @Override
     public void printOpdracht() {
-
+        System.out.println("Wie geeft welke status update?");
 
     }
 
