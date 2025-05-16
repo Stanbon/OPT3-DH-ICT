@@ -20,12 +20,12 @@ public class KamerRetrospective extends Kamer{
 
     @Override
     public void printOpdracht() {
-
+        System.out.println("Je gaat situaties krijgen en moet aangeven wat het team hier van kan leren");
     }
 
     @Override
     public void printIntroductie() {
-
+        System.out.println("Welkom in de Sprint Retrospective kamer!");
     }
 
     @Override
