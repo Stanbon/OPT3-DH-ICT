@@ -1,3 +1,3 @@
- interface Monster {
+ interface Monster{
         void soort();
 }

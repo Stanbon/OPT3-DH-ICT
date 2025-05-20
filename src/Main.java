@@ -1,19 +1,21 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        Spel spel = startSpel();
-        showPrompt(spel);
-        // input ......
         Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        // actie van input.....
-        if (input.equals("/status")) {
+        Spel spel = startSpel();
+        while (true){
+            showPrompt();
+            String input = scanner.nextLine();
 
-            System.out.println("Speler Status: " + spel.getSpelers().getFirst().getStatus());
-
+            // actie van input.....
+            if (input.equals("/status")) {
+                System.out.println("Speler Status: " + spel.getSpelers().getFirst().getStatus());
+            }}
         }
 
-    }
+
+
+
 
 
 
@@ -21,16 +23,25 @@ public class Main {
 
         Spel spel = new Spel();
 
-        Monster monster = new Monster("Draak");
-        Monster monster1 = new Monster("Gorilla");
-        Monster monster2 = new Monster("Teemo");
+        Monster monster = new MonsterDraak();
+        Monster monster1 = new MonsterGorilla();
+        Monster monster2 = new MonsterTeemo();
 
+        Kamer kamer = new KamerPlanning("Welke taken passen bij de Sprint Planning?", "Sprint Planning");
+        Kamer kamer1 = new KamerDailyScrum("Wie geeft welke status update?", "Daily Scrum");
+        Kamer kamer2 = new KamerReview("Interpreteer de feedback van de stekeholders en schat de impact er van in", "Sprint Review");
+        Kamer kamer3 = new KamerScrumBoard("Richt de Scrum Board in met de juiste items.", "Scrum Board");
+        Kamer kamer4 = new KamerTIA("Wat is de rol van de TIA in het Scrum proces?", "Scrum TIA");
+        Kamer kamer5 = new KamerRetrospective("Je gaat situaties krijgen en moet aangeven wat het team hier van kan leren", "Sprint Retrospective");
 
-        Kamer kamer = new KamerPlanning("Wat is de hoofdstad van Frankrijk?", monster, "A) Parijs", "B) Londen", "C) Rome", "D) Berlijn", "A");
-        Kamer kamer1 = new KamerReview("Is de aarde plat?", monster1, "A) Ja", "B) Nee", "", "", "A");
 
         spel.voegKamerToe(kamer);
         spel.voegKamerToe(kamer1);
+        spel.voegKamerToe(kamer2);
+        spel.voegKamerToe(kamer3);
+        spel.voegKamerToe(kamer4);
+        spel.voegKamerToe(kamer5);
+
 
 
         System.out.println("Welkom in de kamers. Ik ben Kamerman, je spel leider.");
@@ -39,7 +50,9 @@ public class Main {
         return spel;
     }
 
-    private static void showPrompt(Spel spel) {
+    private static void showPrompt() {
         System.out.println("Type /status om de status van de speler te krijgen");
+        System.out.println("Type /exit om het spel te stoppen");
+        System.out.println("Type 'ga naar kamer 1-6' om naar een kamer te gaan");
     }
 }
