@@ -1,7 +1,7 @@
-class monsters  {
+class Monsters {
     protected Monster monsterSoort;
 
-    public monsters(Monster monsterSoort) {
+    public Monsters(Monster monsterSoort) {
         this.monsterSoort = monsterSoort;
     }
     public void soort() {
