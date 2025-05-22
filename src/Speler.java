@@ -23,7 +23,7 @@ public class Speler {
     }
 
     public void saveToDatabase() {
-        String sql = "INSERT INTO spelers (id, naam, status, positie, levens) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO speler (spelerid, naam, status, positie, levens) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = Database.connectDatabase();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -136,3 +136,4 @@ public class Speler {
     }
 
 }
+

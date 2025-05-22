@@ -47,6 +47,7 @@ public class Main {
         System.out.println("Welkom in de kamers. Ik ben Kamerman, je spel leider.");
         Speler speler = new Speler(0,"Stan", "Levend", 0, 3);
         spel.voegSpelerToe(speler);
+        speler.saveToDatabase();
         return spel;
     }
 
