@@ -22,6 +22,7 @@ public class Speler {
         return levens;
     }
     public int getPositie (){ return Positie; }
+    public int setPositie(int newPositie) { return Positie = newPositie; }
 
 
     public void saveToDatabase() {
