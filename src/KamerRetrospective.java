@@ -3,7 +3,6 @@ public class KamerRetrospective extends Kamer{
         super(quiz, antwoord);
     }
 
-    @Override
     public void controleerAntwoord() {
 
     }

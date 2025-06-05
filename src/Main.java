@@ -9,8 +9,15 @@ public class Main {
 
             // actie van input.....
             if (input.equals("/status")) {
-                System.out.println("Speler Status: " + spel.getSpelers().getFirst().getStatus());
-            }}
+                System.out.println("Speler Status: " + spel.getSpelers().getFirst().getStatus() + " en Speler heeft nog " + spel.getSpelers().getFirst().getLevens());
+            }
+            if (input.equals("/exit")) {
+                break;
+            }
+            if (input.equals("/positie")) {
+                System.out.println("Speler Positie: " + spel.getSpelers().getFirst().getPositie());
+            }
+        }
         }
 
 
@@ -48,12 +55,16 @@ public class Main {
         Speler speler = new Speler(0,"Stan", "Levend", 0, 3);
         spel.voegSpelerToe(speler);
         speler.saveToDatabase();
+        speler.updatePositieInDatabase(speler.getPositie());
+        speler.updateLevensInDatabase(speler.getLevens());
         return spel;
     }
 
     private static void showPrompt() {
         System.out.println("Type /status om de status van de speler te krijgen");
         System.out.println("Type /exit om het spel te stoppen");
+        System.out.println("Type /positie om de positie van de speler te krijgen");
         System.out.println("Type 'ga naar kamer 1-6' om naar een kamer te gaan");
     }
+
 }
