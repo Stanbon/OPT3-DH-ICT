@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
         private static final String URL = "jdbc:mysql://localhost:3306/opt3";
         private static final String USER = "root";
-        private static final String PASSWORD = "GetC@shAndWin101!";
+        private static final String PASSWORD = "?";
 
         public static Connection connectDatabase() throws SQLException {
             Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
