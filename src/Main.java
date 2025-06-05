@@ -52,12 +52,12 @@ public class Main {
         Monster monster1 = new MonsterGorilla();
         Monster monster2 = new MonsterTeemo();
 
-        Kamer kamer = new KamerPlanning("Welke taken passen bij de Sprint Planning?", "Sprint Planning");
-        Kamer kamer1 = new KamerDailyScrum("Wie geeft welke status update?", "Daily Scrum");
-        Kamer kamer2 = new KamerReview("Interpreteer de feedback van de stekeholders en schat de impact er van in", "Sprint Review");
-        Kamer kamer3 = new KamerScrumBoard("Richt de Scrum Board in met de juiste items.", "Scrum Board");
-        Kamer kamer4 = new KamerTIA("Wat is de rol van de TIA in het Scrum proces?", "Scrum TIA");
-        Kamer kamer5 = new KamerRetrospective("Je gaat situaties krijgen en moet aangeven wat het team hier van kan leren", "Sprint Retrospective");
+        Kamer kamer = new KamerPlanning();
+        Kamer kamer1 = new KamerDailyScrum();
+        Kamer kamer2 = new KamerReview();
+        Kamer kamer3 = new KamerScrumBoard();
+        Kamer kamer4 = new KamerTIA();
+        Kamer kamer5 = new KamerRetrospective();
 
 
         spel.voegKamerToe(kamer);

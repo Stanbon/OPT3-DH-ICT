@@ -1,7 +1,5 @@
 public class KamerRetrospective extends Kamer{
-    public KamerRetrospective(String quiz, String antwoord) {
-        super(quiz, antwoord);
-    }
+
 
     @Override
     public void controleerAntwoord() {
@@ -20,7 +18,8 @@ public class KamerRetrospective extends Kamer{
 
     @Override
     public void printOpdracht() {
-        System.out.println("Je gaat situaties krijgen en moet aangeven wat het team hier van kan leren");
+        System.out.println("Geef antwoord op de volgende vraag:");
+        System.out.println("Wat is het doel van een retrospective?");
     }
 
     @Override
@@ -29,7 +28,7 @@ public class KamerRetrospective extends Kamer{
     }
 
     @Override
-    public boolean checkAntwoord(String userAnswer) {
+    public boolean checkAntwoord(String userAnswer, String goedeAntwoord) {
         return false;
     }
 }

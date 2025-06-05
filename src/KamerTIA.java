@@ -1,8 +1,6 @@
 public class KamerTIA extends Kamer{
 
-    public KamerTIA(String quiz, String antwoord) {
-        super(quiz, antwoord);
-    }
+
 
     @Override
     public void controleerAntwoord() {
@@ -21,7 +19,9 @@ public class KamerTIA extends Kamer{
 
     @Override
     public void printOpdracht() {
-        System.out.println("Wat is de rol van de TIA in het Scrum proces?");
+        System.out.println("Ja of Nee:");
+        System.out.println("Zijn de drie pijlers van scrum onderling " +
+                "afhankelijk en noodzakelijk voor empirische proc   escontrole?");
     }
 
     @Override
@@ -30,7 +30,7 @@ public class KamerTIA extends Kamer{
     }
 
     @Override
-    public boolean checkAntwoord(String userAnswer) {
+    public boolean checkAntwoord(String userAnswer, String goedeAntwoord) {
         return false;
     }
 }

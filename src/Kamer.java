@@ -2,16 +2,6 @@ abstract class Kamer {
 
 
 
-    protected String quiz;
-
-    protected String antwoord;
-
-
-
-    public Kamer(String quiz, String antwoord) {
-        this.quiz = quiz;
-        this.antwoord = antwoord;
-    }
      //Template method
     /**
      * Start de kamer met de introductie, opdracht, controleer antwoord, resultaat en feedback.
@@ -50,13 +40,7 @@ abstract class Kamer {
 
 
 
-    public abstract boolean checkAntwoord (String userAnswer);
+    public abstract boolean checkAntwoord (String userAnswer, String goedeAntwoord);
 
-    public String getQuiz() {
-        return quiz;
-    }
 
-    public String getAntwoord() {
-        return antwoord;
-    }
 }

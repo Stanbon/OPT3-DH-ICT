@@ -1,7 +1,5 @@
 class KamerReview extends Kamer {
-    public KamerReview(String quiz, String antwoord) {
-        super(quiz, antwoord);
-    }
+
 
     @Override
     public void controleerAntwoord() {
@@ -20,7 +18,9 @@ class KamerReview extends Kamer {
 
     @Override
     public void printOpdracht() {
-        System.out.println("Interpreteer de feedback van de stekeholders en schat de impact er van in");
+        System.out.println("Waar of niet waar:" +
+                "\nDe Sprint Review is vooral een statusvergadering waarin teamleden rapporteren " +
+                "wat ze tijdens de sprint hebben gedaan.  ");
     }
 
     @Override
@@ -29,7 +29,7 @@ class KamerReview extends Kamer {
     }
 
     @Override
-    public boolean checkAntwoord (String userAnswer) {
-        return userAnswer.equals(antwoord);
+    public boolean checkAntwoord (String userAnswer, String goedeAntwoord) {
+        return false;
     }
 }

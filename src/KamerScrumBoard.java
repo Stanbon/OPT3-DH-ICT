@@ -1,9 +1,7 @@
 public class KamerScrumBoard extends Kamer{
 
 
-    public KamerScrumBoard(String quiz, String antwoord) {
-        super(quiz, antwoord);
-    }
+
 
     @Override
     public void controleerAntwoord() {
@@ -22,7 +20,9 @@ public class KamerScrumBoard extends Kamer{
 
     @Override
     public void printOpdracht() {
-        System.out.println("Richt de Scrum Board in met de juiste items.");
+        System.out.println("Juist of onjuist:");
+        System.out.println("Op een scrumboard verplaatst een taak zich van 'Te Doen'" +
+                "naar 'Bezig' naar 'Klaar' naarmate het werk vordert.");
     }
 
     @Override
@@ -31,7 +31,7 @@ public class KamerScrumBoard extends Kamer{
     }
 
     @Override
-    public boolean checkAntwoord(String userAnswer) {
+    public boolean checkAntwoord(String userAnswer, String goedeAntwoord) {
         return false;
     }
 }

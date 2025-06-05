@@ -3,9 +3,7 @@ import java.util.Scanner;
 class KamerPlanning extends Kamer {
 
 
-    public KamerPlanning(String quiz, String antwoord) {
-        super(quiz, antwoord);
-    }
+
 
     @Override
     public void controleerAntwoord() {
@@ -24,7 +22,9 @@ class KamerPlanning extends Kamer {
 
     @Override
     public void printOpdracht() {
-        System.out.println("Welke taken passen bij de Sprint Planning?");
+        System.out.println("Vul in:");
+        System.out.println("Tijdens de sprint planning selecteert het team items uit de _______ _______ " +
+                "om tijdens de sprint aan te werken.");
 
     }
 
@@ -34,7 +34,7 @@ class KamerPlanning extends Kamer {
     }
 
     @Override
-    public boolean checkAntwoord (String userAnswer) {
-        return userAnswer.equals(antwoord);
+    public boolean checkAntwoord (String userAnswer, String goedeAntwoord) {
+        return false;
     }
 }
