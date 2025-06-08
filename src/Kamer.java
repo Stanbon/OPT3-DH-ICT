@@ -18,31 +18,11 @@ abstract class Kamer implements HintProvider, AntwoordObserver {
     public final void startKamer() {
         printIntroductie();
         printOpdracht();
-
-        // Loop to ask until correct or max attempts
-        while (!isCorrect && attempts < getMaxAttempts()) {
-            String userAnswer = getUserInput();
-            isCorrect = checkAntwoord(userAnswer);
-
-            if (!isCorrect) {
-                attempts++;
-                printResultaat();
-                printFeedback();
-
-                // Only after the first wrong attempt, ask for hint
-                if (attempts == 1) {
-                    roepHintProviderAan();
-                }
-            } else {
-                printResultaat();
-                printFeedback();
+        controleerAntwoord();
+        printResultaat();
+        printFeedback();
             }
-        }
 
-        if (!isCorrect) {
-            System.out.println("Je hebt alle pogingen gebruikt. Het juiste antwoord was: " + antwoord);
-        }
-    }
 
     protected int getMaxAttempts() {
         return 3;
@@ -74,7 +54,7 @@ abstract class Kamer implements HintProvider, AntwoordObserver {
 
 
 
-    public abstract boolean checkAntwoord (String userAnswer);
+
 
     public abstract void roepHintProviderAan();
 
