@@ -1,6 +1,6 @@
 class KamerReview extends Kamer {
-    public KamerReview(String quiz, String antwoord) {
-        super(quiz, antwoord);
+    public KamerReview(String quiz, Monster obstakel, String a, String b, String c, String d, String antwoord) {
+        super(quiz, a, b, c, d, antwoord);
     }
 
     public void controleerAntwoord() {
@@ -30,5 +30,10 @@ class KamerReview extends Kamer {
     @Override
     public boolean checkAntwoord (String userAnswer) {
         return userAnswer.equals(antwoord);
+    }
+  
+    @Override
+    public boolean kanKeyJokerGebruiken(){
+        return true;
     }
 }

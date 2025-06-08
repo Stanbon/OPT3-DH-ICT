@@ -109,4 +109,9 @@ class KamerDailyScrum extends Kamer {
     public void geefHint() {
 
     }
+
+    @Override
+    public boolean kanKeyJokerGebruiken(){
+        return true;
+    }
 }
