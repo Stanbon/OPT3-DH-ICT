@@ -1,8 +1,11 @@
 abstract class Kamer {
+    protected VraagStrategie vraagStrategie;
 
+    public void setVraagStrategie(VraagStrategie vraagStrategie) {
+        this.vraagStrategie = vraagStrategie;
+    }
 
-
-     //Template method
+    //Template method
     /**
      * Start de kamer met de introductie, opdracht, controleer antwoord, resultaat en feedback.
      * Template Method Pattern
@@ -40,7 +43,7 @@ abstract class Kamer {
 
 
 
-    public abstract boolean checkAntwoord (String userAnswer, String goedeAntwoord);
+
 
 
 }

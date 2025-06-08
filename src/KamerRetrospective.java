@@ -1,9 +1,18 @@
+import java.util.Scanner;
+
 public class KamerRetrospective extends Kamer{
 
+    public KamerRetrospective(){
+        String vraag = "Geef antwoord op de volgende vraag: \nWat is het doel van een retrospective?";
+        String antwoord = "Het team kijkt terug op de sprint en bedenkt verbeterpunten";
+        this.vraagStrategie = new OpenVraag(vraag, antwoord);
+    }
 
     @Override
     public void controleerAntwoord() {
-
+        Scanner scanner = new Scanner(System.in);
+        String antwoord = scanner.nextLine();
+        boolean correct = vraagStrategie.controleerAntwoord(antwoord);
     }
 
     @Override
@@ -18,8 +27,7 @@ public class KamerRetrospective extends Kamer{
 
     @Override
     public void printOpdracht() {
-        System.out.println("Geef antwoord op de volgende vraag:");
-        System.out.println("Wat is het doel van een retrospective?");
+        vraagStrategie.printVraag();
     }
 
     @Override
@@ -27,8 +35,5 @@ public class KamerRetrospective extends Kamer{
         System.out.println("Welkom in de Sprint Retrospective kamer!");
     }
 
-    @Override
-    public boolean checkAntwoord(String userAnswer, String goedeAntwoord) {
-        return false;
-    }
+
 }

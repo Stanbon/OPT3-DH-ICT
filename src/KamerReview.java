@@ -1,9 +1,19 @@
+import java.util.Scanner;
+
 class KamerReview extends Kamer {
 
+    public KamerReview() {
+        String vraag = "Waar of niet waar:" +
+                "\nDe Sprint Review is vooral een statusvergadering waarin teamleden rapporteren " +
+                "wat ze tijdens de sprint hebben gedaan.";
 
+        this.vraagStrategie = new WaarOnwaarVraag(vraag, false);
+    }
     @Override
     public void controleerAntwoord() {
-
+        Scanner scanner = new Scanner(System.in);
+        String antwoord = scanner.nextLine();
+        boolean correct = vraagStrategie.controleerAntwoord(antwoord);
     }
 
     @Override
@@ -18,9 +28,7 @@ class KamerReview extends Kamer {
 
     @Override
     public void printOpdracht() {
-        System.out.println("Waar of niet waar:" +
-                "\nDe Sprint Review is vooral een statusvergadering waarin teamleden rapporteren " +
-                "wat ze tijdens de sprint hebben gedaan.  ");
+        vraagStrategie.printVraag();
     }
 
     @Override
@@ -28,8 +36,5 @@ class KamerReview extends Kamer {
         System.out.println("Welkom in de Sprint Review kamer!");
     }
 
-    @Override
-    public boolean checkAntwoord (String userAnswer, String goedeAntwoord) {
-        return false;
-    }
+
 }

@@ -1,10 +1,18 @@
+import java.util.Scanner;
+
 public class KamerTIA extends Kamer{
 
-
+    public KamerTIA() {
+        String vraag = "Ja of Nee: Zijn de drie pijlers van scrum onderling afhankelijk en noodzakelijk voor empirische procescontrole?";
+        boolean antwoord = true; // Ja
+        this.vraagStrategie = new WaarOnwaarVraag(vraag, antwoord);
+    }
 
     @Override
     public void controleerAntwoord() {
-
+        Scanner scanner = new Scanner(System.in);
+        String antwoord = scanner.nextLine();
+        boolean correct = vraagStrategie.controleerAntwoord(antwoord);
     }
 
     @Override
@@ -19,9 +27,7 @@ public class KamerTIA extends Kamer{
 
     @Override
     public void printOpdracht() {
-        System.out.println("Ja of Nee:");
-        System.out.println("Zijn de drie pijlers van scrum onderling " +
-                "afhankelijk en noodzakelijk voor empirische proc   escontrole?");
+        vraagStrategie.printVraag();
     }
 
     @Override
@@ -29,8 +35,5 @@ public class KamerTIA extends Kamer{
         System.out.println("Welkom in de kamer van de TIA!");
     }
 
-    @Override
-    public boolean checkAntwoord(String userAnswer, String goedeAntwoord) {
-        return false;
-    }
+
 }
