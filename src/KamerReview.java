@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 class KamerReview extends Kamer {
@@ -8,12 +9,26 @@ class KamerReview extends Kamer {
                 "wat ze tijdens de sprint hebben gedaan.";
 
         this.vraagStrategie = new WaarOnwaarVraag(vraag, false);
+        this.hintProviders = List.of(
+                new HelpHintProvider(),
+                new FunnyHintProvider()
+        );
     }
     @Override
     public void controleerAntwoord() {
-        Scanner scanner = new Scanner(System.in);
-        String antwoord = scanner.nextLine();
-        boolean correct = vraagStrategie.controleerAntwoord(antwoord);
+        while (attempts < getMaxAttempts() && !isCorrect) {
+            System.out.print("Je antwoord: ");
+            Scanner scanner = new Scanner(System.in);
+            String antwoord = scanner.nextLine().trim().toUpperCase();
+
+            isCorrect = vraagStrategie.controleerAntwoord(antwoord);
+            attempts++;
+
+            if (!isCorrect && attempts < getMaxAttempts()) {
+                System.out.println("Niet correct. Probeer opnieuw.");
+                roepHintProviderAan();
+            }
+        }
     }
 
     @Override

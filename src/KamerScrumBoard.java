@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class KamerScrumBoard extends Kamer{
@@ -6,15 +7,29 @@ public class KamerScrumBoard extends Kamer{
         String vraag = "Juist of onjuist: Op een scrumboard verplaatst een taak zich van 'Te Doen' naar 'Bezig' naar 'Klaar' naarmate het werk vordert.";
         String antwoord = "Juist";
         this.vraagStrategie = new WaarOnwaarVraag(vraag, true);
+        this.hintProviders = List.of(
+                new HelpHintProvider(),
+                new FunnyHintProvider()
+        );
     }
 
 
 
     @Override
     public void controleerAntwoord() {
-        Scanner scanner = new Scanner(System.in);
-        String antwoord = scanner.nextLine();
-        boolean correct = vraagStrategie.controleerAntwoord(antwoord);
+        while (attempts < getMaxAttempts() && !isCorrect) {
+            System.out.print("Je antwoord: ");
+            Scanner scanner = new Scanner(System.in);
+            String antwoord = scanner.nextLine().trim().toUpperCase();
+
+            isCorrect = vraagStrategie.controleerAntwoord(antwoord);
+            attempts++;
+
+            if (!isCorrect && attempts < getMaxAttempts()) {
+                System.out.println("Niet correct. Probeer opnieuw.");
+                roepHintProviderAan();
+            }
+        }
     }
 
     @Override

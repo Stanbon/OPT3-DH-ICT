@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.Scanner;
+
 abstract class Kamer implements HintProvider, AntwoordObserver {
     protected VraagStrategie vraagStrategie;
 
@@ -7,6 +10,7 @@ abstract class Kamer implements HintProvider, AntwoordObserver {
 
     protected int attempts = 0;
     protected boolean isCorrect = false;
+    protected List<HintProvider> hintProviders;
 
 
 
@@ -51,9 +55,6 @@ abstract class Kamer implements HintProvider, AntwoordObserver {
      * Controleer het antwoord van de gebruiker.
      */
     public  abstract void controleerAntwoord();
-
-
-
 
 
     public abstract void roepHintProviderAan();

@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class KamerDailyScrum extends Kamer {
 
-    private List<HintProvider> hintProviders;
     private boolean isCorrect;
     private int attempts = 0;
     private final int maxAttempts = 3;
@@ -17,7 +16,7 @@ public class KamerDailyScrum extends Kamer {
                 "Een sprint review houden"
         };
         this.vraagStrategie = new MeerkeuzeVraag(vraag, opties, "C");
-        hintProviders = List.of(
+        this.hintProviders = List.of(
                 new HelpHintProvider(),
                 new FunnyHintProvider()
         );
@@ -25,10 +24,21 @@ public class KamerDailyScrum extends Kamer {
 
     @Override
     public void controleerAntwoord() {
-        Scanner scanner = new Scanner(System.in);
-        String antwoord = scanner.next();
-        boolean correct = vraagStrategie.controleerAntwoord(antwoord);
+        while (attempts < getMaxAttempts() && !isCorrect) {
+            System.out.print("Je antwoord: ");
+            Scanner scanner = new Scanner(System.in);
+            String antwoord = scanner.nextLine().trim().toUpperCase();
+
+            isCorrect = vraagStrategie.controleerAntwoord(antwoord);
+            attempts++;
+
+            if (!isCorrect && attempts < getMaxAttempts()) {
+                System.out.println("Niet correct. Probeer opnieuw.");
+                roepHintProviderAan();
+            }
+        }
     }
+
 
     @Override
     public void printFeedback() {
