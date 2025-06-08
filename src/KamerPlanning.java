@@ -37,5 +37,28 @@ class KamerPlanning extends Kamer {
         System.out.println("Welkom in de kamer van de Sprint Planning!");
     }
 
+    @Override
+    public void roepHintProviderAan() {
 
+    }
+
+    @Override
+    public boolean kanKeyJokerGebruiken() {
+        return false;
+    }
+
+    @Override
+    public void update(boolean correctAntwoord) {
+
+    }
+
+    @Override
+    public void vraagHint() {
+
+    }
+
+    @Override
+    public void geefHint() {
+
+    }
 }
