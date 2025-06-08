@@ -32,4 +32,9 @@ public class KamerRetrospective extends Kamer{
     public boolean checkAntwoord(String userAnswer) {
         return false;
     }
+
+    @Override
+    public boolean kanKeyJokerGebruiken(){
+        return false;
+    }
 }

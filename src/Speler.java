@@ -24,6 +24,10 @@ public class Speler {
     public int getPositie (){ return Positie; }
     public int setPositie(int newPositie) { return Positie = newPositie; }
 
+    // public void gebruikJoker(Joker joker, Room room) {
+    //    joker.useIn(room);
+    //}
+    // joker gebruiken
 
     public void saveToDatabase() {
         String sql = "INSERT INTO speler (spelerid, naam, status, positie, levens) VALUES (?, ?, ?, ?, ?)";

@@ -3,8 +3,8 @@ import java.util.Scanner;
 class KamerPlanning extends Kamer {
 
 
-    public KamerPlanning(String quiz, String antwoord) {
-        super(quiz, antwoord);
+    public KamerPlanning(String quiz, Monster obstakel, String a, String b, String c, String d, String antwoord) {
+        super(quiz, obstakel, a, b, c, d, antwoord);
     }
 
     @Override
@@ -30,11 +30,16 @@ class KamerPlanning extends Kamer {
 
     @Override
     public void printIntroductie() {
-        System.out.println("Welkom in de kamer van de Sprint Planning!");
+
     }
 
     @Override
     public boolean checkAntwoord (String userAnswer) {
         return userAnswer.equals(antwoord);
+    }
+
+    @Override
+    public boolean kanKeyJokerGebruiken(){
+        return false;
     }
 }

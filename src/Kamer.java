@@ -12,7 +12,7 @@ abstract class Kamer {
         this.quiz = quiz;
         this.antwoord = antwoord;
     }
-     //Template method
+
     /**
      * Start de kamer met de introductie, opdracht, controleer antwoord, resultaat en feedback.
      * Template Method Pattern
@@ -59,4 +59,7 @@ abstract class Kamer {
     public String getAntwoord() {
         return antwoord;
     }
+
+    public abstract boolean kanKeyJokerGebruiken();
+
 }
