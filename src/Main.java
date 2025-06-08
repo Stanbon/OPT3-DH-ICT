@@ -22,15 +22,20 @@ public class Main {
                 Character keuze = laatsteDigit(Keuzes.nextLine());
                 switch (keuze) {
                     case 1: speler.setPositie(1);
-                    System.out.println("Je bent nu in kamer 1");
+                    spel.getKamers().get(0).printIntroductie();
+                    break;
                     case 2: speler.setPositie(2);
-                    System.out.println("Je bent nu in kamer 2");
+                    spel.getKamers().get(1).printIntroductie();
+                    break;
                     case 3: speler.setPositie(3);
-                    System.out.println("Je bent nu in kamer 3");
+                    spel.getKamers().get(2).printIntroductie();
+                    break;
                     case 4: speler.setPositie(4);
-                    System.out.println("Je bent nu in kamer 4");
+                    spel.getKamers().get(3).printIntroductie();
+                    break;
                     case 5: speler.setPositie(5);
-                    System.out.println("Je bent nu in kamer 5");
+                    spel.getKamers().get(4).printIntroductie();
+                    break;
                 }
 
             }
