@@ -21,7 +21,10 @@ public class Speler {
     public int getLevens() {
         return levens;
     }
-    public int getPositie () { return Positie; }
+
+    public int getPositie (){ return Positie; }
+    public int setPositie(int newPositie) { return Positie = newPositie; }
+
 
     public void saveToDatabase() {
         String sql = "INSERT INTO speler (spelerid, naam, status, positie, levens) VALUES (?, ?, ?, ?, ?)";

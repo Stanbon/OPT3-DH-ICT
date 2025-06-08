@@ -1,5 +1,6 @@
 import java.util.Scanner;
 public class Main {
+    private static Speler speler;
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Spel spel = startSpel();
@@ -9,14 +10,32 @@ public class Main {
 
             // actie van input.....
             if (input.equals("/status")) {
-                System.out.println("Speler Status: " + spel.getSpelers().getFirst().getStatus() + " en Speler heeft nog " + spel.getSpelers().getFirst().getLevens());
+
+                System.out.println("Speler Status: " + spel.getSpelers().getFirst().getStatus());
             }
-            if (input.equals("/exit")) {
+
+            else if (input.equals("/exit")) {
                 break;
             }
-            if (input.equals("/positie")) {
-                System.out.println("Speler Positie: " + spel.getSpelers().getFirst().getPositie());
+            else if (input.equals ("Kamer Keuze")) {
+                System.out.println("Type 'Ga naar kamer 1-5' om naar een kamer te gaan");
+                Scanner Keuzes  = new Scanner(System.in);
+                Character keuze = laatsteDigit(Keuzes.nextLine());
+                switch (keuze) {
+                    case 1: speler.setPositie(1);
+                    System.out.println("Je bent nu in kamer 1");
+                    case 2: speler.setPositie(2);
+                    System.out.println("Je bent nu in kamer 2");
+                    case 3: speler.setPositie(3);
+                    System.out.println("Je bent nu in kamer 3");
+                    case 4: speler.setPositie(4);
+                    System.out.println("Je bent nu in kamer 4");
+                    case 5: speler.setPositie(5);
+                    System.out.println("Je bent nu in kamer 5");
+                }
+
             }
+
         }
         }
 
@@ -63,8 +82,18 @@ public class Main {
     private static void showPrompt() {
         System.out.println("Type /status om de status van de speler te krijgen");
         System.out.println("Type /exit om het spel te stoppen");
-        System.out.println("Type /positie om de positie van de speler te krijgen");
-        System.out.println("Type 'ga naar kamer 1-6' om naar een kamer te gaan");
+
+        System.out.println("Type 'Kamer Keuze' om naar een kamer te gaan");
+    }
+    public static Character laatsteDigit(String keuze) {
+        for (int i = keuze.length() - 1; i >= 0; i--) {
+            char teken = keuze.charAt(i);
+            if (Character.isDigit(teken)) {
+                return teken;
+
+            }
+}
+        return null;
     }
 
 }
