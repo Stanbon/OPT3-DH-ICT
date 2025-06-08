@@ -7,7 +7,6 @@ class KamerPlanning extends Kamer {
         super(quiz, obstakel, a, b, c, d, antwoord);
     }
 
-    @Override
     public void controleerAntwoord() {
 
     }

@@ -4,7 +4,6 @@ public class KamerTIA extends Kamer{
         super(quiz, antwoord);
     }
 
-    @Override
     public void controleerAntwoord() {
 
     }

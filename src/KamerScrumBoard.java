@@ -5,7 +5,6 @@ public class KamerScrumBoard extends Kamer{
         super(quiz, antwoord);
     }
 
-    @Override
     public void controleerAntwoord() {
 
     }
