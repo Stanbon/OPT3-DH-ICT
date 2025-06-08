@@ -1,12 +1,20 @@
+import java.util.Scanner;
+
 public class KamerScrumBoard extends Kamer{
 
-
-    public KamerScrumBoard(String quiz, String antwoord) {
-        super(quiz, antwoord);
+    public KamerScrumBoard() {
+        String vraag = "Juist of onjuist: Op een scrumboard verplaatst een taak zich van 'Te Doen' naar 'Bezig' naar 'Klaar' naarmate het werk vordert.";
+        String antwoord = "Juist";
+        this.vraagStrategie = new WaarOnwaarVraag(vraag, true);
     }
 
-    public void controleerAntwoord() {
 
+
+    @Override
+    public void controleerAntwoord() {
+        Scanner scanner = new Scanner(System.in);
+        String antwoord = scanner.nextLine();
+        boolean correct = vraagStrategie.controleerAntwoord(antwoord);
     }
 
     @Override
@@ -21,7 +29,7 @@ public class KamerScrumBoard extends Kamer{
 
     @Override
     public void printOpdracht() {
-        System.out.println("Richt de Scrum Board in met de juiste items.");
+        vraagStrategie.printVraag();
     }
 
     @Override
@@ -29,13 +37,5 @@ public class KamerScrumBoard extends Kamer{
         System.out.println("Welkom in de Scrum Board kamer!");
     }
 
-    @Override
-    public boolean checkAntwoord(String userAnswer) {
-        return false;
-    }
 
-    @Override
-    public boolean kanKeyJokerGebruiken(){
-        return false;
-    }
 }

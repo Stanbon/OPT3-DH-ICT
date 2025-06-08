@@ -1,16 +1,16 @@
-public abstract class Kamer implements HintProvider, AntwoordObserver {
+abstract class Kamer implements HintProvider, AntwoordObserver {
+    protected VraagStrategie vraagStrategie;
 
-    protected String quiz;
-    protected String antwoord;
+    public void setVraagStrategie(VraagStrategie vraagStrategie) {
+        this.vraagStrategie = vraagStrategie;
+    }
 
     protected int attempts = 0;
     protected boolean isCorrect = false;
 
-    public Kamer(String quiz, String antwoord) {
-        this.quiz = quiz;
-        this.antwoord = antwoord;
-    }
 
+
+    //Template method
     /**
      * Start de kamer met de introductie, opdracht, controleer antwoord, resultaat en feedback.
      * Template Method Pattern
@@ -56,23 +56,29 @@ public abstract class Kamer implements HintProvider, AntwoordObserver {
 
     public abstract void printFeedback();
 
+    /**
+     * Print het resultaat van het antwoord;
+     */
     public abstract void printResultaat();
 
     public abstract void printOpdracht();
 
+    /**
+     * Print de introductie van de kamer.
+     */
     public abstract void printIntroductie();
+    /**
+     * Controleer het antwoord van de gebruiker.
+     */
+    public  abstract void controleerAntwoord();
 
-    public abstract boolean checkAntwoord(String userAnswer);
+
+
+    public abstract boolean checkAntwoord (String userAnswer);
 
     public abstract void roepHintProviderAan();
 
-    public String getQuiz() {
-        return quiz;
-    }
 
-    public String getAntwoord() {
-        return antwoord;
-    }
 
     public abstract boolean kanKeyJokerGebruiken();
 
