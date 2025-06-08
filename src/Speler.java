@@ -21,6 +21,7 @@ public class Speler {
     public int getLevens() {
         return levens;
     }
+
     public int getPositie (){ return Positie; }
     public int setPositie(int newPositie) { return Positie = newPositie; }
 
@@ -45,13 +46,13 @@ public class Speler {
         }
     }
 
-    public static Speler loadFromDatabase(int spelerId) {
-        String sql = "SELECT * FROM spelers WHERE id = ?";
+    public static Speler loadFromDatabase(int spelerid) {
+        String sql = "SELECT * FROM speler WHERE spelerid = ?";
 
         try (Connection conn = Database.connectDatabase();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, spelerId);
+            stmt.setInt(1, spelerid);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
@@ -63,7 +64,7 @@ public class Speler {
 
                     return new Speler(id, naam, Status, Positie, levens);
                 } else {
-                    System.out.println("No speler found with id: " + spelerId);
+                    System.out.println("No speler found with id: " + spelerid);
                 }
             }
 
@@ -75,7 +76,7 @@ public class Speler {
     }
 
     public void updateLevensInDatabase(int newLevens) {
-        String sql = "UPDATE spelers SET levens = ? WHERE id = ?";
+        String sql = "UPDATE speler SET levens = ? WHERE spelerid = ?";
 
         try (Connection conn = Database.connectDatabase();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -96,7 +97,7 @@ public class Speler {
         }
     }
     public void updateStatusInDatabase(String newStatus) {
-        String sql = "UPDATE spelers SET status = ? WHERE id = ?";
+        String sql = "UPDATE speler SET status = ? WHERE spelerid = ?";
 
         try (Connection conn = Database.connectDatabase();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -117,7 +118,7 @@ public class Speler {
         }
     }
     public void updatePositieInDatabase(int newPositie) {
-        String sql = "UPDATE spelers SET positie = ? WHERE id = ?";
+        String sql = "UPDATE speler SET positie = ? WHERE spelerid = ?";
 
         try (Connection conn = Database.connectDatabase();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

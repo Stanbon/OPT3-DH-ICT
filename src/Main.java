@@ -10,6 +10,7 @@ public class Main {
 
             // actie van input.....
             if (input.equals("/status")) {
+
                 System.out.println("Speler Status: " + spel.getSpelers().getFirst().getStatus());
             }
 
@@ -73,12 +74,15 @@ public class Main {
         Speler speler = new Speler(0,"Stan", "Levend", 0, 3);
         spel.voegSpelerToe(speler);
         speler.saveToDatabase();
+        speler.updatePositieInDatabase(speler.getPositie());
+        speler.updateLevensInDatabase(speler.getLevens());
         return spel;
     }
 
     private static void showPrompt() {
         System.out.println("Type /status om de status van de speler te krijgen");
         System.out.println("Type /exit om het spel te stoppen");
+
         System.out.println("Type 'Kamer Keuze' om naar een kamer te gaan");
     }
     public static Character laatsteDigit(String keuze) {
@@ -91,4 +95,5 @@ public class Main {
 }
         return null;
     }
+
 }

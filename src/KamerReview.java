@@ -3,7 +3,6 @@ class KamerReview extends Kamer {
         super(quiz, antwoord);
     }
 
-    @Override
     public void controleerAntwoord() {
 
     }
@@ -20,7 +19,7 @@ class KamerReview extends Kamer {
 
     @Override
     public void printOpdracht() {
-        System.out.println("Interpreteer de feedback van de stekeholders en schat de impact er van in");
+        System.out.println("Interpreteer de feedback van de stakeholders en schat de impact er van in");
     }
 
     @Override
