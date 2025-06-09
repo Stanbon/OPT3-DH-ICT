@@ -1,18 +1,39 @@
+import java.util.List;
 import java.util.Scanner;
 
-public class KamerTIA extends Kamer{
+public class KamerTIA extends Kamer implements AntwoordObserver{
+
+    private final AntwoordControle antwoordControle = new AntwoordControle();
 
     public KamerTIA() {
         String vraag = "Ja of Nee: Zijn de drie pijlers van scrum onderling afhankelijk en noodzakelijk voor empirische procescontrole?";
         boolean antwoord = true; // Ja
         this.vraagStrategie = new WaarOnwaarVraag(vraag, antwoord);
+        this.hintProviders = List.of(
+                new HelpHintProvider(),
+                new FunnyHintProvider()
+        );
+        antwoordControle.voegObserverToe(this);
     }
 
     @Override
     public void controleerAntwoord() {
-        Scanner scanner = new Scanner(System.in);
-        String antwoord = scanner.nextLine();
-        boolean correct = vraagStrategie.controleerAntwoord(antwoord);
+        while (attempts < getMaxAttempts() && !isCorrect) {
+            String antwoord = getUserInput().toUpperCase();
+
+            antwoordControle.controleAntwoord(antwoord, vraagStrategie);
+
+            if (isCorrect) {
+                break;
+            } else {
+                attempts++;
+                if (attempts < getMaxAttempts()) {
+                    roepHintProviderAan();
+                } else {
+                    System.out.println("Helaas, je hebt het maximale aantal pogingen bereikt.");
+                }
+            }
+        }
     }
 
     @Override
@@ -38,8 +59,29 @@ public class KamerTIA extends Kamer{
 
 
     @Override
-    public void roepHintProviderAan() {
+    public void roepHintProviderAan () {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Wil je een hint? (ja/nee): ");
+        String keuze = scanner.nextLine().trim().toLowerCase();
 
+        if (keuze.equals("ja")) {
+            HintProvider hint = HintSelector.kiesHintUitLijst(hintProviders);
+            hint.vraagHint();
+            hint.geefHint();
+        } else {
+            System.out.println("Geen hint gekozen, succes!");
+        }
+    }
+
+
+    @Override
+    public void update ( boolean correctAntwoord){
+        this.isCorrect = correctAntwoord;
+        if (correctAntwoord) {
+            System.out.println("Dat is correct!");
+        } else {
+            System.out.println("Dat is incorrect!");
+        }
     }
 
     @Override
@@ -47,10 +89,6 @@ public class KamerTIA extends Kamer{
         return false;
     }
 
-    @Override
-    public void update(boolean correctAntwoord) {
-
-    }
 
     @Override
     public void vraagHint() {

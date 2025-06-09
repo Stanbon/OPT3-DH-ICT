@@ -14,6 +14,7 @@ abstract class Kamer implements HintProvider, AntwoordObserver {
 
 
 
+
     //Template method
     /**
      * Start de kamer met de introductie, opdracht, controleer antwoord, resultaat en feedback.

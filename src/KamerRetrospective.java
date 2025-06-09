@@ -1,7 +1,9 @@
 import java.util.List;
 import java.util.Scanner;
 
-public class KamerRetrospective extends Kamer{
+public class KamerRetrospective extends Kamer implements AntwoordObserver{
+
+    private final AntwoordControle antwoordControle = new AntwoordControle();
 
     public KamerRetrospective(){
         String vraag = "Geef antwoord op de volgende vraag: \nWat is het doel van een retrospective?";
@@ -11,21 +13,25 @@ public class KamerRetrospective extends Kamer{
                 new HelpHintProvider(),
                 new FunnyHintProvider()
         );
+        antwoordControle.voegObserverToe(this);
     }
 
     @Override
     public void controleerAntwoord() {
         while (attempts < getMaxAttempts() && !isCorrect) {
-            System.out.print("Je antwoord: ");
-            Scanner scanner = new Scanner(System.in);
-            String antwoord = scanner.nextLine().trim().toUpperCase();
+            String antwoord = getUserInput().toUpperCase();
 
-            isCorrect = vraagStrategie.controleerAntwoord(antwoord);
-            attempts++;
+            antwoordControle.controleAntwoord(antwoord, vraagStrategie);
 
-            if (!isCorrect && attempts < getMaxAttempts()) {
-                System.out.println("Niet correct. Probeer opnieuw.");
-                roepHintProviderAan();
+            if (isCorrect) {
+                break;
+            } else {
+                attempts++;
+                if (attempts < getMaxAttempts()) {
+                    roepHintProviderAan();
+                } else {
+                    System.out.println("Helaas, je hebt het maximale aantal pogingen bereikt.");
+                }
             }
         }
     }
@@ -53,8 +59,29 @@ public class KamerRetrospective extends Kamer{
 
 
     @Override
-    public void roepHintProviderAan() {
+    public void roepHintProviderAan () {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Wil je een hint? (ja/nee): ");
+        String keuze = scanner.nextLine().trim().toLowerCase();
 
+        if (keuze.equals("ja")) {
+            HintProvider hint = HintSelector.kiesHintUitLijst(hintProviders);
+            hint.vraagHint();
+            hint.geefHint();
+        } else {
+            System.out.println("Geen hint gekozen, succes!");
+        }
+    }
+
+
+    @Override
+    public void update ( boolean correctAntwoord){
+        this.isCorrect = correctAntwoord;
+        if (correctAntwoord) {
+            System.out.println("Dat is correct!");
+        } else {
+            System.out.println("Dat is incorrect!");
+        }
     }
 
     @Override
@@ -62,10 +89,6 @@ public class KamerRetrospective extends Kamer{
         return false;
     }
 
-    @Override
-    public void update(boolean correctAntwoord) {
-
-    }
 
     @Override
     public void vraagHint() {

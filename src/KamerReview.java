@@ -1,7 +1,9 @@
 import java.util.List;
 import java.util.Scanner;
 
-class KamerReview extends Kamer {
+class KamerReview extends Kamer implements AntwoordObserver{
+
+    private final AntwoordControle antwoordControle = new AntwoordControle();
 
     public KamerReview() {
         String vraag = "Waar of niet waar:" +
@@ -13,20 +15,24 @@ class KamerReview extends Kamer {
                 new HelpHintProvider(),
                 new FunnyHintProvider()
         );
+        antwoordControle.voegObserverToe(this);
     }
     @Override
     public void controleerAntwoord() {
         while (attempts < getMaxAttempts() && !isCorrect) {
-            System.out.print("Je antwoord: ");
-            Scanner scanner = new Scanner(System.in);
-            String antwoord = scanner.nextLine().trim().toUpperCase();
+            String antwoord = getUserInput().toUpperCase();
 
-            isCorrect = vraagStrategie.controleerAntwoord(antwoord);
-            attempts++;
+            antwoordControle.controleAntwoord(antwoord, vraagStrategie);
 
-            if (!isCorrect && attempts < getMaxAttempts()) {
-                System.out.println("Niet correct. Probeer opnieuw.");
-                roepHintProviderAan();
+            if (isCorrect) {
+                break;
+            } else {
+                attempts++;
+                if (attempts < getMaxAttempts()) {
+                    roepHintProviderAan();
+                } else {
+                    System.out.println("Helaas, je hebt het maximale aantal pogingen bereikt.");
+                }
             }
         }
     }
@@ -53,18 +59,34 @@ class KamerReview extends Kamer {
 
 
     @Override
-    public void roepHintProviderAan() {
+    public void roepHintProviderAan () {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Wil je een hint? (ja/nee): ");
+        String keuze = scanner.nextLine().trim().toLowerCase();
 
+        if (keuze.equals("ja")) {
+            HintProvider hint = HintSelector.kiesHintUitLijst(hintProviders);
+            hint.vraagHint();
+            hint.geefHint();
+        } else {
+            System.out.println("Geen hint gekozen, succes!");
+        }
+    }
+
+
+    @Override
+    public void update ( boolean correctAntwoord){
+        this.isCorrect = correctAntwoord;
+        if (correctAntwoord) {
+            System.out.println("Dat is correct!");
+        } else {
+            System.out.println("Dat is incorrect!");
+        }
     }
 
     @Override
     public boolean kanKeyJokerGebruiken() {
         return false;
-    }
-
-    @Override
-    public void update(boolean correctAntwoord) {
-
     }
 
     @Override

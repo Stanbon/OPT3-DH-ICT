@@ -1,11 +1,12 @@
 import java.util.List;
 import java.util.Scanner;
 
-public class KamerDailyScrum extends Kamer {
+public class KamerDailyScrum extends Kamer implements AntwoordObserver {
 
     private boolean isCorrect;
     private int attempts = 0;
     private final int maxAttempts = 3;
+    private final AntwoordControle antwoordControle = new AntwoordControle();
 
     public KamerDailyScrum() {
         String vraag = "Wat is het voornaamste doel van de Daily Scrum?";
@@ -20,80 +21,95 @@ public class KamerDailyScrum extends Kamer {
                 new HelpHintProvider(),
                 new FunnyHintProvider()
         );
+
+        antwoordControle.voegObserverToe(this);
     }
 
     @Override
     public void controleerAntwoord() {
         while (attempts < getMaxAttempts() && !isCorrect) {
-            System.out.print("Je antwoord: ");
-            Scanner scanner = new Scanner(System.in);
-            String antwoord = scanner.nextLine().trim().toUpperCase();
+            String antwoord = getUserInput().toUpperCase();
 
-            isCorrect = vraagStrategie.controleerAntwoord(antwoord);
-            attempts++;
+            antwoordControle.controleAntwoord(antwoord, vraagStrategie);
 
-            if (!isCorrect && attempts < getMaxAttempts()) {
-                System.out.println("Niet correct. Probeer opnieuw.");
-                roepHintProviderAan();
+            if (isCorrect) {
+                break;
+            } else {
+                attempts++;
+                if (attempts < getMaxAttempts()) {
+                    roepHintProviderAan();
+                } else {
+                    System.out.println("Helaas, je hebt het maximale aantal pogingen bereikt.");
+                }
             }
         }
     }
 
 
-    @Override
-    public void printFeedback() {
 
-    }
+        @Override
+        public void printFeedback () {
 
-    @Override
-    public void printResultaat() {
+        }
 
-    }
+        @Override
+        public void printResultaat () {
+            if (isCorrect) {
+                System.out.println("Goed gedaan! Je hebt het juiste antwoord gegeven.");
+            } else {
+                System.out.println("Je hebt het helaas niet correct beantwoord.");
+            }
+        }
 
-    @Override
-    public void printOpdracht() {
-        vraagStrategie.printVraag();
-    }
+        @Override
+        public void printOpdracht () {
+            vraagStrategie.printVraag();
+        }
 
-    @Override
-    public void roepHintProviderAan() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Wil je een hint? (ja/nee): ");
-        String keuze = scanner.nextLine().trim().toLowerCase();
+        @Override
+        public void roepHintProviderAan () {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Wil je een hint? (ja/nee): ");
+            String keuze = scanner.nextLine().trim().toLowerCase();
 
-        if (keuze.equals("ja")) {
-            HintProvider hint = HintSelector.kiesHintUitLijst(hintProviders);
-            hint.vraagHint();
-            hint.geefHint();
-        } else {
-            System.out.println("Geen hint gekozen, succes!");
+            if (keuze.equals("ja")) {
+                HintProvider hint = HintSelector.kiesHintUitLijst(hintProviders);
+                hint.vraagHint();
+                hint.geefHint();
+            } else {
+                System.out.println("Geen hint gekozen, succes!");
+            }
+        }
+
+
+        @Override
+        public void update ( boolean correctAntwoord){
+            this.isCorrect = correctAntwoord;
+            if (correctAntwoord) {
+                System.out.println("Dat is correct!");
+            } else {
+                System.out.println("Dat is incorrect!");
+            }
+        }
+
+         @Override
+         public void printIntroductie () {
+             System.out.println("Welkom in de Daily Scrum kamer!");
+         }
+
+
+        @Override
+        public void vraagHint(){
+        }
+
+
+        @Override
+        public void geefHint() {
+        }
+
+        @Override
+        public boolean kanKeyJokerGebruiken () {
+            return true;
         }
     }
 
-    @Override
-    public void printIntroductie() {
-        System.out.println("Welkom in de Daily Scrum kamer!");
-    }
-
-
-
-    @Override
-    public void update(boolean correctAntwoord) {
-
-    }
-
-    @Override
-    public void vraagHint() {
-
-    }
-
-    @Override
-    public void geefHint() {
-
-    }
-
-    @Override
-    public boolean kanKeyJokerGebruiken(){
-        return true;
-    }
-}
