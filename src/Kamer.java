@@ -25,7 +25,7 @@ abstract class Kamer implements HintProvider, AntwoordObserver {
         controleerAntwoord();
         printResultaat();
         printFeedback();
-            }
+    }
 
 
     protected int getMaxAttempts() {
