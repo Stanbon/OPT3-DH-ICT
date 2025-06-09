@@ -1,7 +1,8 @@
-class KeyJoker extends Joker{
+class KeyJoker implements Joker{
     protected boolean gebruikt = false;
 
-    @Override void useIn(Kamer kamer) {
+    @Override
+    public void useIn(Kamer kamer) {
         if (!gebruikt) {
             if (kamer.kanKeyJokerGebruiken()) {
                 System.out.println("Extra Key gekregen!");
