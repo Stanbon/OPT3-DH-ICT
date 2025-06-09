@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class Main {
-    private static Speler speler;
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Spel spel = startSpel();
@@ -20,23 +20,35 @@ public class Main {
             else if (input.equals ("Kamer Keuze")) {
                 System.out.println("Type 'Ga naar kamer 1-5' om naar een kamer te gaan");
                 Scanner Keuzes  = new Scanner(System.in);
-                Character keuze = laatsteDigit(Keuzes.nextLine());
-                switch (keuze) {
-                    case 1: speler.setPositie(1);
-                    spel.getKamers().get(0).printIntroductie();
+                String keuzeInput = Keuzes.nextLine();
+                Character keuzeChar = laatsteDigit(keuzeInput);
+                if (keuzeChar == null) {
+                    System.out.println("Ongeldige keuze. Kies een kamer tussen 1 en 5.exe");
+                    continue;
+                }
+                switch (keuzeChar) {
+                    case '1':
+                    spel.getSpelers().get(0).setPositie(1);
+                    spel.getKamers().get(0).startKamer();
                     break;
-                    case 2: speler.setPositie(2);
-                    spel.getKamers().get(1).printIntroductie();
+                    case '2':
+                    spel.getSpelers().get(0).setPositie(2);
+                    spel.getKamers().get(1).startKamer();
                     break;
-                    case 3: speler.setPositie(3);
-                    spel.getKamers().get(2).printIntroductie();
+                    case '3':
+                    spel.getSpelers().get(0).setPositie(3);
+                    spel.getKamers().get(2).startKamer();
                     break;
-                    case 4: speler.setPositie(4);
-                    spel.getKamers().get(3).printIntroductie();
+                    case '4':
+                    spel.getSpelers().get(0).setPositie(4);
+                    spel.getKamers().get(3).startKamer();
                     break;
-                    case 5: speler.setPositie(5);
-                    spel.getKamers().get(4).printIntroductie();
+                    case '5':
+                    spel.getSpelers().get(0).setPositie(5);
+                    spel.getKamers().get(4).startKamer();
                     break;
+                    default:
+                        System.out.println("Ongeldige keuze. Kies een kamer tussen 1 en 5.");
                 }
 
             }
@@ -62,8 +74,8 @@ public class Main {
         Kamer kamer1 = new KamerDailyScrum();
         Kamer kamer2 = new KamerReview();
         Kamer kamer3 = new KamerScrumBoard();
-        Kamer kamer4 = new KamerTIA();
-        Kamer kamer5 = new KamerRetrospective();
+        Kamer kamer4 = new KamerRetrospective();
+        Kamer kamer5 = new KamerTIA();
 
 
         spel.voegKamerToe(kamer);
