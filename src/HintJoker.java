@@ -9,7 +9,7 @@ class HintJoker implements Joker {
             // (zet de skip mechanisme hier)
         }
         else {
-            System.out..println("Je hebt je hint al gebruikt");
+            System.out.println("Je hebt je hint al gebruikt");
         }
     }
 }
