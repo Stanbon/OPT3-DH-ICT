@@ -4,6 +4,7 @@ import java.util.Scanner;
 abstract class Kamer implements HintProvider, AntwoordObserver {
     protected VraagStrategie vraagStrategie;
 
+
     public void setVraagStrategie(VraagStrategie vraagStrategie) {
         this.vraagStrategie = vraagStrategie;
     }
@@ -11,6 +12,10 @@ abstract class Kamer implements HintProvider, AntwoordObserver {
     protected int attempts = 0;
     protected boolean isCorrect = false;
     protected List<HintProvider> hintProviders;
+    protected final KeyJoker keyJoker = new KeyJoker();
+    protected final HintJoker hintJoker = new HintJoker();
+
+
 
 
 
@@ -55,13 +60,36 @@ abstract class Kamer implements HintProvider, AntwoordObserver {
     /**
      * Controleer het antwoord van de gebruiker.
      */
-    public  abstract void controleerAntwoord();
+    public abstract void controleerAntwoord();
+
+    protected void gebruikJokerMenu() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welke joker wil je gebruiken?");
+        System.out.println("1. HintJoker");
+        System.out.println("2. KeyJoker");
+        String keuze = scanner.nextLine().trim();
+
+        switch (keuze) {
+            case "1":
+                hintJoker.useIn(this);
+                break;
+            case "2":
+                keyJoker.useIn(this);
+                break;
+            default:
+                System.out.println("Ongeldige keuze.");
+        }
+    }
 
 
     public abstract void roepHintProviderAan();
 
-
-
     public abstract boolean kanKeyJokerGebruiken();
+
+    public abstract void activeerKeyHint();
+
+    public void markeerAlsCorrect() {
+        isCorrect = true;
+    }
 
 }

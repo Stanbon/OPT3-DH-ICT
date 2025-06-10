@@ -4,9 +4,8 @@ class HintJoker implements Joker {
     @Override
     public void useIn(Kamer kamer) {
         if (!gebruikt) {
-            System.out.println("Kamer wordt geskipped");
+            kamer.activeerKeyHint();
             gebruikt = true;
-            // (zet de skip mechanisme hier)
         }
         else {
             System.out.println("Je hebt je hint al gebruikt");

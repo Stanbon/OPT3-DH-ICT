@@ -31,6 +31,10 @@ public class KamerDailyScrum extends Kamer implements AntwoordObserver {
             String antwoord = getUserInput().toUpperCase();
 
             antwoordControle.controleAntwoord(antwoord, vraagStrategie);
+            if (antwoord.equalsIgnoreCase("/joker")) {
+                gebruikJokerMenu();
+                continue;
+            }
 
             if (isCorrect) {
                 break;
@@ -111,5 +115,12 @@ public class KamerDailyScrum extends Kamer implements AntwoordObserver {
         public boolean kanKeyJokerGebruiken () {
             return true;
         }
+
+
+    @Override
+    public void activeerKeyHint() {
+        System.out.println("");
     }
+
+}
 

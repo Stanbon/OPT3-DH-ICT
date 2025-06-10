@@ -7,6 +7,7 @@ public class Speler {
     private int Positie;
     private int levens;
 
+
     public Speler(int id, String naam, String status, int positie, int levens) {
         this.id = id;
         this.naam = naam;
@@ -25,10 +26,6 @@ public class Speler {
     public int getPositie (){ return Positie; }
     public int setPositie(int newPositie) { return Positie = newPositie; }
 
-    // public void gebruikJoker(Joker joker, Room room) {
-    //    joker.useIn(room);
-    //}
-    // joker gebruiken
 
     public void saveToDatabase() {
         String sql = "INSERT INTO speler (spelerid, naam, status, positie, levens) VALUES (?, ?, ?, ?, ?)";

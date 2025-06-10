@@ -101,6 +101,7 @@ public class Main {
         System.out.println("Type /exit om het spel te stoppen");
 
         System.out.println("Type 'Kamer Keuze' om naar een kamer te gaan");
+        System.out.println("Type '/joker' in een kamer als je vast zit in een kamer");
     }
     public static Character laatsteDigit(String keuze) {
         for (int i = keuze.length() - 1; i >= 0; i--) {

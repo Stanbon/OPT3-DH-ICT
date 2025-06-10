@@ -23,6 +23,11 @@ public class KamerTIA extends Kamer implements AntwoordObserver{
 
             antwoordControle.controleAntwoord(antwoord, vraagStrategie);
 
+            if (antwoord.equalsIgnoreCase("/joker")) {
+                gebruikJokerMenu();
+                continue;
+            }
+
             if (isCorrect) {
                 break;
             } else {
@@ -98,5 +103,9 @@ public class KamerTIA extends Kamer implements AntwoordObserver{
     @Override
     public void geefHint() {
 
+    }
+    @Override
+    public void activeerKeyHint() {
+        System.out.println("");
     }
 }

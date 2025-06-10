@@ -23,6 +23,10 @@ class KamerReview extends Kamer implements AntwoordObserver{
             String antwoord = getUserInput().toUpperCase();
 
             antwoordControle.controleAntwoord(antwoord, vraagStrategie);
+            if (antwoord.equalsIgnoreCase("/joker")) {
+                gebruikJokerMenu();
+                continue;
+            }
 
             if (isCorrect) {
                 break;
@@ -86,7 +90,7 @@ class KamerReview extends Kamer implements AntwoordObserver{
 
     @Override
     public boolean kanKeyJokerGebruiken() {
-        return false;
+        return true;
     }
 
     @Override
@@ -97,5 +101,9 @@ class KamerReview extends Kamer implements AntwoordObserver{
     @Override
     public void geefHint() {
 
+    }
+    @Override
+    public void activeerKeyHint() {
+        System.out.println("");
     }
 }

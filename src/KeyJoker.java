@@ -6,9 +6,9 @@ class KeyJoker implements Joker{
         if (!gebruikt) {
             if (kamer.kanKeyJokerGebruiken()) {
                 System.out.println("Extra Key gekregen!");
+                System.out.println("Kamer wordt overgeslagen!");
+                kamer.markeerAlsCorrect();
                 gebruikt = true;
-                // add extra key code
-
             }
             else {
                 System.out.println("De KeyJoker werkt niet :(");
