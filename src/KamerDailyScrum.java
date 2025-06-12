@@ -30,7 +30,6 @@ public class KamerDailyScrum extends Kamer implements AntwoordObserver {
         while (attempts < getMaxAttempts() && !isCorrect) {
             String antwoord = getUserInput().toUpperCase();
 
-
             if (antwoord.equalsIgnoreCase("/joker")) {
                 gebruikJokerMenu();
                 continue;
