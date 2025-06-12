@@ -92,4 +92,5 @@ abstract class Kamer implements HintProvider, AntwoordObserver {
         isCorrect = true;
     }
 
+    public abstract void RoepMonsterAan();
 }

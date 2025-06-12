@@ -76,6 +76,10 @@ class KamerReview extends Kamer implements AntwoordObserver{
             System.out.println("Geen hint gekozen, succes!");
         }
     }
+    @Override
+    public void RoepMonsterAan () {
+        System.out.println("Er is geen monster in deze kamer.");
+    }
 
 
     @Override

@@ -18,28 +18,41 @@ class KamerPlanning extends Kamer implements AntwoordObserver{
 
     @Override
     public void controleerAntwoord() {
-        while (attempts < getMaxAttempts() && !isCorrect) {
-            String antwoord = getUserInput().toUpperCase();
+        boolean monsterVerschenen = false;
 
-            antwoordControle.controleAntwoord(antwoord, vraagStrategie);
+        while (attempts < getMaxAttempts() && !this.isCorrect) {
+            String antwoord = getUserInput().toUpperCase();
 
             if (antwoord.equalsIgnoreCase("/joker")) {
                 gebruikJokerMenu();
                 continue;
             }
 
+            boolean isCorrect = vraagStrategie.controleerAntwoord(antwoord);
+            antwoordControle.controleAntwoord(antwoord, vraagStrategie);
+            update(isCorrect);
+
             if (isCorrect) {
+                if (monsterVerschenen) {
+                    System.out.println("Je hebt het monster verslagen!");
+                    roepHintProviderAan();
+                } else {
+                    System.out.println("Goed gedaan! Je had het in één keer goed.");
+                }
                 break;
             } else {
                 attempts++;
-                if (attempts < getMaxAttempts()) {
-                    roepHintProviderAan();
-                } else {
+                RoepMonsterAan();
+                monsterVerschenen = true;
+
+                if (attempts >= getMaxAttempts()) {
                     System.out.println("Helaas, je hebt het maximale aantal pogingen bereikt.");
                 }
             }
         }
     }
+
+
 
     @Override
     public void printFeedback() {
@@ -73,6 +86,10 @@ class KamerPlanning extends Kamer implements AntwoordObserver{
         } else {
             System.out.println("Geen hint gekozen, succes!");
         }
+    }
+    @Override
+    public void RoepMonsterAan () {
+        System.out.println("Er is geen monster in deze kamer.");
     }
 
 

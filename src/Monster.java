@@ -1,3 +1,6 @@
  interface Monster{
-        void soort();
+        void aanval();
+        void vlucht();
+        void update(boolean correctAntwoord);
 }
+

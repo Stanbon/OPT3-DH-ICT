@@ -1,6 +1,4 @@
-public class Deur implements AntwoordObserver {
-    @Override
-    public void update(boolean antwoord) {
-
-    }
+public interface Deur {
+    void open();
+    void sluiten();
 }
