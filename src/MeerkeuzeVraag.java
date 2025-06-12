@@ -4,7 +4,11 @@ public class MeerkeuzeVraag implements VraagStrategie{
     private String[] opties;
     private String juisteAntwoord;
 
-    public MeerkeuzeVraag(String vraag, String[] opties, String juisteAntwoord){}
+    public MeerkeuzeVraag(String vraag, String[] opties, String juisteAntwoord){
+        this.vraag = vraag;
+        this.opties = opties;
+        this.juisteAntwoord = juisteAntwoord;
+    }
     @Override
     public void printVraag() {
         System.out.println(vraag);
