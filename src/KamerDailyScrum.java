@@ -29,13 +29,12 @@ public class KamerDailyScrum extends Kamer implements AntwoordObserver {
     public void controleerAntwoord() {
         while (attempts < getMaxAttempts() && !isCorrect) {
             String antwoord = getUserInput().toUpperCase();
-            boolean isCorrect = vraagStrategie.controleerAntwoord(antwoord);
-            update(isCorrect);
-            antwoordControle.controleAntwoord(antwoord, vraagStrategie);
+
             if (antwoord.equalsIgnoreCase("/joker")) {
                 gebruikJokerMenu();
                 continue;
             }
+            antwoordControle.controleAntwoord(antwoord, vraagStrategie);
 
             if (isCorrect) {
                 break;
