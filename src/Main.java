@@ -9,15 +9,15 @@ public class Main {
             String input = scanner.nextLine();
 
             // actie van input.....
-            if (input.equals("/status")) {
+            if (input.equalsIgnoreCase("/status")) {
 
                 System.out.println("Speler Status: " + spel.getSpelers().getFirst().getStatus());
             }
 
-            else if (input.equals("/exit")) {
+            else if (input.equalsIgnoreCase("/exit")) {
                 break;
             }
-            else if (input.equals ("Kamer Keuze")) {
+            else if (input.equalsIgnoreCase("Kamer Keuze")) {
                 System.out.println("Type 'Ga naar kamer 1-5' om naar een kamer te gaan");
                 Scanner Keuzes  = new Scanner(System.in);
                 String keuzeInput = Keuzes.nextLine();
@@ -99,9 +99,8 @@ public class Main {
     private static void showPrompt() {
         System.out.println("Type /status om de status van de speler te krijgen");
         System.out.println("Type /exit om het spel te stoppen");
-
-        System.out.println("Type 'Kamer Keuze' om naar een kamer te gaan");
         System.out.println("Type '/joker' in een kamer als je vast zit in een kamer");
+        System.out.println("Type 'Kamer Keuze' om naar een kamer te gaan");
     }
     public static Character laatsteDigit(String keuze) {
         for (int i = keuze.length() - 1; i >= 0; i--) {
