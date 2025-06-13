@@ -47,7 +47,7 @@ abstract class Kamer implements HintProvider, AntwoordObserver {
     public abstract void printFeedback();
 
     /**
-     * Print het resultaat van het antwoord;
+     * Print het resultaat van het antwoord.
      */
     public abstract void printResultaat();
 

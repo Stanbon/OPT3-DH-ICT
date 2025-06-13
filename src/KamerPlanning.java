@@ -1,20 +1,26 @@
-    import java.util.List;
-    import java.util.Scanner;
+import java.util.List;
+import java.util.Scanner;
 
-    class KamerPlanning extends Kamer implements AntwoordObserver{
-        private final AntwoordControle antwoordControle = new AntwoordControle();
+class KamerPlanning extends Kamer implements AntwoordObserver{
+    private final AntwoordControle antwoordControle = new AntwoordControle();
 
-        public KamerPlanning(){
-            String vraag = "Vul in:\nTijdens de sprint planning selecteert het team items uit de _______ _______ " +
-                    "om tijdens de sprint aan te werken.";
-            String antwoord = "Product Backlog";
-            this.vraagStrategie = new OpenVraag(vraag, antwoord);
-            this.hintProviders = List.of(
-                    new HelpHintProvider(),
-                    new FunnyHintProvider()
-            );
-            antwoordControle.voegObserverToe(this);
-        }
+    public KamerPlanning(){
+        String vraag = "Vul in:\nTijdens de sprint planning selecteert het team items uit de _______ _______ " +
+                "om tijdens de sprint aan te werken.";
+        String antwoord = "Product Backlog";
+        this.vraagStrategie = new OpenVraag(vraag, antwoord);
+        this.hintProviders = List.of(
+                new HelpHintProvider(),
+                new FunnyHintProvider()
+        );
+        Deur deur = new Deur();
+        Monster monster = new MonsterTeemo();
+        ScoreBord scoreBord = new ScoreBord();
+        antwoordControle.voegObserverToe(this);
+        antwoordControle.voegObserverToe(deur);
+        antwoordControle.voegObserverToe(monster);
+        antwoordControle.voegObserverToe(scoreBord);
+    }
 
         @Override
         public void controleerAntwoord() {

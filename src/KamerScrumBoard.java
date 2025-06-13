@@ -13,6 +13,11 @@ public class KamerScrumBoard extends Kamer implements AntwoordObserver{
                 new HelpHintProvider(),
                 new FunnyHintProvider()
         );
+        Deur deur = new Deur();
+        Monster monster = new MonsterGorilla();
+        ScoreBord scoreBord = new ScoreBord();
+        antwoordControle.voegObserverToe(deur);
+        antwoordControle.voegObserverToe(monster);
         antwoordControle.voegObserverToe(this);
     }
 

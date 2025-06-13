@@ -3,7 +3,7 @@ import java.util.List;
 
 public class AntwoordControle implements Antwoord {
     List<AntwoordObserver> observers = new ArrayList<>();
-    private boolean antwoord;
+
 
 
     @Override
@@ -12,9 +12,8 @@ public class AntwoordControle implements Antwoord {
     }
 
     @Override
-    public void controleAntwoord(String input, VraagStrategie strategie) {
-        boolean correct = strategie.controleerAntwoord(input);
-        notifyObservers(correct);
+    public void verwijderObserver(AntwoordObserver observer) {
+        observers.remove(observer);
     }
 
     @Override
@@ -25,4 +24,9 @@ public class AntwoordControle implements Antwoord {
     }
 
 
+
+    public void controleAntwoord(String antwoord, VraagStrategie vraagStrategie) {
+        boolean isCorrect = vraagStrategie.controleerAntwoord(antwoord);
+        notifyObservers(isCorrect);
+    }
 }
