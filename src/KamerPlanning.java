@@ -13,7 +13,13 @@ class KamerPlanning extends Kamer implements AntwoordObserver{
                 new HelpHintProvider(),
                 new FunnyHintProvider()
         );
+        Deur deur = new Deur();
+        Monster monster = new MonsterTeemo();
+        ScoreBord scoreBord = new ScoreBord();
         antwoordControle.voegObserverToe(this);
+        antwoordControle.voegObserverToe(deur);
+        antwoordControle.voegObserverToe(monster);
+        antwoordControle.voegObserverToe(scoreBord);
     }
 
     @Override

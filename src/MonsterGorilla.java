@@ -1,6 +1,20 @@
 class MonsterGorilla implements Monster, AntwoordObserver {
     @Override
     public void update(boolean correctAntwoord) {
+        if(!correctAntwoord) {
+            verschijn();
+        } else {
+            verdwijn();
+        }
+    }
+
+    @Override
+    public void verschijn() {
+
+    }
+
+    @Override
+    public void verdwijn() {
 
     }
 

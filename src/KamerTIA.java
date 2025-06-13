@@ -13,6 +13,12 @@ public class KamerTIA extends Kamer implements AntwoordObserver{
                 new HelpHintProvider(),
                 new FunnyHintProvider()
         );
+        Deur deur = new Deur();
+        Monster monster = new MonsterDraak();
+        ScoreBord scoreBord = new ScoreBord();
+        antwoordControle.voegObserverToe(deur);
+        antwoordControle.voegObserverToe(monster);
+        antwoordControle.voegObserverToe(scoreBord);
         antwoordControle.voegObserverToe(this);
     }
 
