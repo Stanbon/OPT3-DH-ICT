@@ -1,13 +1,13 @@
 package ISP;
 
-public class Kamerinfo implements Readable, Reward{
+public class Kamerinfo implements Readable, Beloning{
     @Override
     public void showMessage() {
-        System.out.println("De info over de kamer moet hier?");
+        System.out.println("?");
     }
 
     @Override
-    public void grantReward() {
-        System.out.println("Hier heb je een reward");
+    public void ontvangBeloning() {
+        System.out.println("Hier heb je een beloning");
     }
 }

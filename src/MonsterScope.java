@@ -1,9 +1,9 @@
-public class MonsterGorilla implements Monster, AntwoordObserver {
+public class MonsterScope implements Monster, AntwoordObserver {
 
     private int hp = 80;
-    private final String naam = "Gorilla";
+    private final String naam = "Scope Creep";
     private boolean verslagen = false;
-    private final int schadeWaarde = 14;
+    private final int schadeWaarde = 6;
 
     @Override
     public void update(boolean correctAntwoord) {

@@ -3,12 +3,19 @@ import java.util.Scanner;
 
 public class KamerDailyScrum extends Kamer implements AntwoordObserver {
 
+    private final CombatStrategy combatStrategy;
+    private final Speler speler;
     private boolean isCorrect;
     private int attempts = 0;
+    private Monster monster;
     private final int maxAttempts = 3;
     private final AntwoordControle antwoordControle = new AntwoordControle();
 
-    public KamerDailyScrum() {
+    public KamerDailyScrum(Speler speler, CombatStrategy combatStrategy) {
+        this.speler = speler;
+        this.combatStrategy = combatStrategy;
+        this.monster = new MonsterVertraging();
+
         String vraag = "Wat is het voornaamste doel van de Daily Scrum?";
         String[] opties = {
                 "Nieuwe taken toewijzen aan teamleden",
@@ -22,7 +29,6 @@ public class KamerDailyScrum extends Kamer implements AntwoordObserver {
                 new FunnyHintProvider()
         );
         Deur deur = new Deur();
-        Monster monster = new MonsterDraak();
         ScoreBord scoreBord = new ScoreBord();
         antwoordControle.voegObserverToe(this);
         antwoordControle.voegObserverToe(deur);
@@ -32,20 +38,29 @@ public class KamerDailyScrum extends Kamer implements AntwoordObserver {
 
     @Override
     public void controleerAntwoord() {
-        while (attempts < getMaxAttempts() && !isCorrect) {
+        while (attempts < maxAttempts && !isCorrect) {
             String antwoord = getUserInput().toUpperCase();
             if (antwoord.equalsIgnoreCase("/joker")) {
                 gebruikJokerMenu();
                 continue;
             }
+
             antwoordControle.controleAntwoord(antwoord, vraagStrategie);
 
             if (isCorrect) {
                 break;
             } else {
                 attempts++;
-                if (attempts < getMaxAttempts()) {
-                    roepHintProviderAan();
+                if (attempts < maxAttempts) {
+                    if (!monster.isVerslagen()) {
+                        combatStrategy.startCombat(speler, monster);
+                    }
+
+                    if (monster.isVerslagen()) {
+                        roepHintProviderAan();
+                    } else {
+                        System.out.println("Je kunt geen hint krijgen totdat het monster is verslagen!");
+                    }
                 } else {
                     System.out.println("Helaas, je hebt het maximale aantal pogingen bereikt.");
                 }
@@ -55,7 +70,8 @@ public class KamerDailyScrum extends Kamer implements AntwoordObserver {
 
 
 
-        @Override
+
+    @Override
         public void printFeedback () {
 
         }

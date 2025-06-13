@@ -1,3 +1,5 @@
+import ISP.Vuist;
+
 import java.util.Scanner;
 public class Main {
 
@@ -11,7 +13,7 @@ public class Main {
             // actie van input.....
             if (input.equalsIgnoreCase("/status")) {
 
-                System.out.println("Speler Status: " + spel.getSpelers().getFirst().getStatus());
+                System.out.println("Speler status is " + spel.getSpelers().getFirst().getStatus() + " met HP: " + spel.getSpelers().getLast().getHP());
             }
 
             else if (input.equalsIgnoreCase("/exit")) {
@@ -66,16 +68,25 @@ public class Main {
 
         Spel spel = new Spel();
 
+        System.out.println("Welkom in de kamers. Ik ben Kamerman, je spel leider.");
+        Speler speler = new Speler(0,"Stan", "levend", 0, 3, 100, new Vuist());
+        spel.voegSpelerToe(speler);
+        CombatStrategy strategy = new TurnBasedCombat();
+       /* speler.saveToDatabase();
+        speler.updatePositieInDatabase(speler.getPositie());
+       speler.updateLevensInDatabase(speler.getLevens()); */
+
+
         Monster monster = new MonsterDraak();
         Monster monster1 = new MonsterGorilla();
         Monster monster2 = new MonsterTeemo();
 
-        Kamer kamer = new KamerPlanning();
-        Kamer kamer1 = new KamerDailyScrum();
-        Kamer kamer2 = new KamerReview();
-        Kamer kamer3 = new KamerScrumBoard();
-        Kamer kamer4 = new KamerRetrospective();
-        Kamer kamer5 = new KamerTIA();
+        Kamer kamer = new KamerPlanning(speler, strategy);
+        Kamer kamer1 = new KamerDailyScrum(speler, strategy);
+        Kamer kamer2 = new KamerReview(speler, strategy);
+        Kamer kamer3 = new KamerScrumBoard(speler, strategy);
+        Kamer kamer4 = new KamerRetrospective(speler, strategy);
+        Kamer kamer5 = new KamerTIA(speler, strategy);
 
 
         spel.voegKamerToe(kamer);
@@ -85,14 +96,6 @@ public class Main {
         spel.voegKamerToe(kamer4);
         spel.voegKamerToe(kamer5);
 
-
-
-        System.out.println("Welkom in de kamers. Ik ben Kamerman, je spel leider.");
-        Speler speler = new Speler(0,"Stan", "Levend", 0, 3);
-        spel.voegSpelerToe(speler);
-        speler.saveToDatabase();
-        speler.updatePositieInDatabase(speler.getPositie());
-        speler.updateLevensInDatabase(speler.getLevens());
         return spel;
     }
 

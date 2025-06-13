@@ -1,5 +1,4 @@
- interface Monster extends AntwoordObserver {
-        void soort();
-        void verschijn();
-        void verdwijn();
+public interface Monster extends AntwoordObserver, Vechten, Aanvaller {
+    void verschijn();
+    void verdwijn();
 }

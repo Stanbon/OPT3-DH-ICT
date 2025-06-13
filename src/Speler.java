@@ -1,144 +1,56 @@
-import java.sql.*;
+import ISP.Wapen;
 
-public class Speler {
+public class Speler implements Vechten {
     private int id;
     private String naam;
-    private String Status;
-    private int Positie;
+    private String status;
+    private int positie;
     private int levens;
+    private int HP;
+    private Wapen wapen;
 
-
-    public Speler(int id, String naam, String status, int positie, int levens) {
+    public Speler(int id, String naam, String status, int positie, int levens, int HP, Wapen wapen) {
         this.id = id;
         this.naam = naam;
-        this.Status = status;
-        this.Positie = positie;
+        this.status = HP > 0 ? "levend" : "dood";
+        this.positie = positie;
         this.levens = levens;
+        this.HP = HP;
+        this.wapen = wapen;
     }
 
-    public String getStatus() {
-        return Status;
-    }
-    public int getLevens() {
-        return levens;
-    }
+    public String getStatus() {  return status; }
 
-    public int getPositie (){ return Positie; }
-    public int setPositie(int newPositie) { return Positie = newPositie; }
+    public int getLevens() { return levens; }
 
+    public int getPositie() { return positie; }
 
-    public void saveToDatabase() {
-        String sql = "INSERT INTO speler (spelerid, naam, status, positie, levens) VALUES (?, ?, ?, ?, ?)";
+    public int setPositie(int newPositie) { return this.positie = newPositie;}
 
-        try (Connection conn = Database.connectDatabase();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+    public int getHP() { return HP; }
+    
+    public Wapen getWapen() { return wapen; }
 
-            stmt.setInt(1, id);
-            stmt.setString(2, naam);
-            stmt.setString(3, Status);
-            stmt.setInt(4, Positie);
-            stmt.setInt(5, levens);
+    @Override
+    public String getNaam() { return naam; }
 
-            stmt.executeUpdate();
-            System.out.println("Speler saved to database.");
+    @Override
+    public boolean isVerslagen() { return HP <= 0; }
 
-        } catch (SQLException e) {
-            System.err.println("Failed to save Speler: " + e.getMessage());
-        }
+    @Override
+    public void valAan(Vechten doel) {
+        int schade = wapen.geefSchade();
+        System.out.println(naam + " valt " + doel.getNaam() + " aan met " + wapen.voorwerpNaam() + " en doet " + schade + " schade.");
+        doel.ontvangSchade(schade);
     }
 
-    public static Speler loadFromDatabase(int spelerid) {
-        String sql = "SELECT * FROM speler WHERE spelerid = ?";
-
-        try (Connection conn = Database.connectDatabase();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, spelerid);
-
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    int id = rs.getInt("id");
-                    String naam = rs.getString("naam");
-                    String Status = rs.getString("status");
-                    int Positie = rs.getInt("positie");
-                    int levens = rs.getInt("levens");
-
-                    return new Speler(id, naam, Status, Positie, levens);
-                } else {
-                    System.out.println("No speler found with id: " + spelerid);
-                }
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Failed to load Speler: " + e.getMessage());
-        }
-
-        return null;
-    }
-
-    public void updateLevensInDatabase(int newLevens) {
-        String sql = "UPDATE speler SET levens = ? WHERE spelerid = ?";
-
-        try (Connection conn = Database.connectDatabase();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, newLevens);
-            stmt.setInt(2, this.id);
-
-            int affected = stmt.executeUpdate();
-            if (affected > 0) {
-                this.levens = newLevens; // Also update the object in memory
-                System.out.println("Levens updated to " + newLevens);
-            } else {
-                System.out.println("No speler found with id: " + this.id);
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Error updating levens: " + e.getMessage());
-        }
-    }
-    public void updateStatusInDatabase(String newStatus) {
-        String sql = "UPDATE speler SET status = ? WHERE spelerid = ?";
-
-        try (Connection conn = Database.connectDatabase();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, newStatus);
-            stmt.setInt(2, this.id);
-
-            int affected = stmt.executeUpdate();
-            if (affected > 0) {
-                this.Status = newStatus; // Also update the object in memory
-                System.out.println("Status updated to " + newStatus);
-            } else {
-                System.out.println("No speler found with id: " + this.id);
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Error updating status: " + e.getMessage());
-        }
-    }
-    public void updatePositieInDatabase(int newPositie) {
-        String sql = "UPDATE speler SET positie = ? WHERE spelerid = ?";
-
-        try (Connection conn = Database.connectDatabase();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, newPositie);
-            stmt.setInt(2, this.id);
-
-            int affected = stmt.executeUpdate();
-            if (affected > 0) {
-                this.Positie = newPositie; // Also update the object in memory
-                System.out.println("Positie updated to " + newPositie);
-            } else {
-                System.out.println("No speler found with id: " + this.id);
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Error updating positie: " + e.getMessage());
-        }
+    @Override
+    public void ontvangSchade(int schade) {
+        HP -= schade;
+        if (HP < 0) HP = 0;
+        status = HP > 0 ? "Levend" : "Dood";
+        System.out.println(naam + " ontvangt " + schade + " schade! HP over: " + HP);
+        if (HP == 0) System.out.println(naam + " is overleden!");
     }
 
 }
-
