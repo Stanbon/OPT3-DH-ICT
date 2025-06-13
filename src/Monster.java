@@ -1,6 +1,5 @@
- interface Monster{
-        void aanval();
-        void vlucht();
-        void update(boolean correctAntwoord);
+ interface Monster extends AntwoordObserver {
+        void soort();
+        void verschijn();
+        void verdwijn();
 }
-

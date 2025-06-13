@@ -1,20 +1,24 @@
-public class MonsterDraak implements Monster, AntwoordObserver {
-    @Override
-    public void aanval() {
-        System.out.println("De draak valt aan met vuur!");
+class MonsterDraak implements Monster, AntwoordObserver {
+    public void soort() {
+        System.out.println("FOUTTTTTTTTTTTTTTTTT!!!!!!!!!");
     }
 
     @Override
-    public void vlucht() {
-        System.out.println("De draak vliegt weg!");
+    public void verschijn() {
+
     }
 
     @Override
-    public void update (boolean correctAntwoord) {
-        if (correctAntwoord) {
-            System.out.println("De draak is verslagen!");
+    public void verdwijn() {
+
+    }
+
+    @Override
+    public void update(boolean correctAntwoord) {
+        if (!correctAntwoord) {
+            verschijn();
         } else {
-            System.out.println("De draak is nog steeds in leven!");
+            verdwijn();
         }
     }
 }

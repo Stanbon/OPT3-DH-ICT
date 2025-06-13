@@ -13,6 +13,11 @@ public class KamerScrumBoard extends Kamer implements AntwoordObserver{
                 new HelpHintProvider(),
                 new FunnyHintProvider()
         );
+        Deur deur = new Deur();
+        Monster monster = new MonsterGorilla();
+        ScoreBord scoreBord = new ScoreBord();
+        antwoordControle.voegObserverToe(deur);
+        antwoordControle.voegObserverToe(monster);
         antwoordControle.voegObserverToe(this);
     }
 
@@ -23,13 +28,13 @@ public class KamerScrumBoard extends Kamer implements AntwoordObserver{
         while (attempts < getMaxAttempts() && !isCorrect) {
             String antwoord = getUserInput().toUpperCase();
 
-            antwoordControle.controleAntwoord(antwoord, vraagStrategie);
+
 
             if (antwoord.equalsIgnoreCase("/joker")) {
                 gebruikJokerMenu();
                 continue;
             }
-
+            antwoordControle.controleAntwoord(antwoord, vraagStrategie);
             if (isCorrect) {
                 break;
             } else {

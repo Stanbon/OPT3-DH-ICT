@@ -1,20 +1,24 @@
 class MonsterTeemo implements Monster, AntwoordObserver {
-    @Override
-    public void aanval() {
-        System.out.println("Teemo steekt zijn vijand met een pijl!");
-    }
-
-    @Override
-    public void vlucht() {
-        System.out.println("Teemo rent snel weg in de schaduwen!");
+    public void soort() {
+        System.out.println("Surprise!! Laten we later weer spelen!");
     }
 
     @Override
     public void update(boolean correctAntwoord) {
-        if (correctAntwoord) {
-            System.out.println("Teemo is verslagen!");
+        if(!correctAntwoord) {
+            verschijn();
         } else {
-            System.out.println("Teemo is nog steeds in leven en verstopt zich!");
+            verdwijn();
         }
+    }
+
+    @Override
+    public void verschijn() {
+
+    }
+
+    @Override
+    public void verdwijn() {
+
     }
 }

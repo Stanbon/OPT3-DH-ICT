@@ -21,40 +21,32 @@ public class KamerDailyScrum extends Kamer implements AntwoordObserver {
                 new HelpHintProvider(),
                 new FunnyHintProvider()
         );
-
+        Deur deur = new Deur();
+        Monster monster = new MonsterDraak();
+        ScoreBord scoreBord = new ScoreBord();
         antwoordControle.voegObserverToe(this);
+        antwoordControle.voegObserverToe(deur);
+        antwoordControle.voegObserverToe(monster);
+        antwoordControle.voegObserverToe(scoreBord);
     }
 
     @Override
     public void controleerAntwoord() {
-        boolean monsterVerschenen = false;
-
-        while (attempts < getMaxAttempts() && !this.isCorrect) {
+        while (attempts < getMaxAttempts() && !isCorrect) {
             String antwoord = getUserInput().toUpperCase();
-
             if (antwoord.equalsIgnoreCase("/joker")) {
                 gebruikJokerMenu();
                 continue;
             }
-
-            boolean isCorrect = vraagStrategie.controleerAntwoord(antwoord);
             antwoordControle.controleAntwoord(antwoord, vraagStrategie);
-            update(isCorrect);
 
             if (isCorrect) {
-                if (monsterVerschenen) {
-                    System.out.println("Je hebt het monster verslagen!");
-                    roepHintProviderAan();
-                } else {
-                    System.out.println("Goed gedaan! Je had het in één keer goed.");
-                }
                 break;
             } else {
                 attempts++;
-                RoepMonsterAan();
-                monsterVerschenen = true;
-
-                if (attempts >= getMaxAttempts()) {
+                if (attempts < getMaxAttempts()) {
+                    roepHintProviderAan();
+                } else {
                     System.out.println("Helaas, je hebt het maximale aantal pogingen bereikt.");
                 }
             }
@@ -95,10 +87,6 @@ public class KamerDailyScrum extends Kamer implements AntwoordObserver {
             } else {
                 System.out.println("Geen hint gekozen, succes!");
             }
-        }
-        @Override
-        public void RoepMonsterAan () {
-            System.out.println("Er is geen monster in deze kamer.");
         }
 
 
