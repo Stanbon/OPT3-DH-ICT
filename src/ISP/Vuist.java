@@ -1,18 +1,18 @@
 package ISP;
 
-public class Zwaard implements Wapen, Beloning{
-
+public class Vuist implements Wapen, Beloning{
     @Override
     public void ontvangBeloning() {
-        System.out.println("Beloning Zwaard gegeven.");
+        System.out.println("Speler begint met hun vuisten.");
     }
+
     @Override
     public int geefSchade() {
-        return 25;
+        return 10;
     }
 
     @Override
     public String voorwerpNaam() {
-        return "Zwaard";
+        return "Vuist";
     }
 }

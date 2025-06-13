@@ -3,9 +3,19 @@ import java.util.Scanner;
 
 public class KamerRetrospective extends Kamer implements AntwoordObserver{
 
+    private final CombatStrategy combatStrategy;
+    private final Speler speler;
+    private boolean isCorrect;
+    private int attempts = 0;
+    private Monster monster;
+    private final int maxAttempts = 3;
     private final AntwoordControle antwoordControle = new AntwoordControle();
 
-    public KamerRetrospective(){
+    public KamerRetrospective(Speler speler, CombatStrategy combatStrategy) {
+        this.speler = speler;
+        this.combatStrategy = combatStrategy;
+        this.monster = new MonsterGorilla();
+
         String vraag = "Geef antwoord op de volgende vraag: \nWat is het doel van een retrospective?";
         String antwoord = "Het team kijkt terug op de sprint en bedenkt verbeterpunten";
         this.vraagStrategie = new OpenVraag(vraag, antwoord);
@@ -14,7 +24,6 @@ public class KamerRetrospective extends Kamer implements AntwoordObserver{
                 new FunnyHintProvider()
         );
         Deur deur = new Deur();
-        Monster monster = new MonsterGorilla();
         ScoreBord scoreBord = new ScoreBord();
         antwoordControle.voegObserverToe(deur);
         antwoordControle.voegObserverToe(monster);
@@ -24,21 +33,29 @@ public class KamerRetrospective extends Kamer implements AntwoordObserver{
 
     @Override
     public void controleerAntwoord() {
-        while (attempts < getMaxAttempts() && !isCorrect) {
+        while (attempts < maxAttempts && !isCorrect) {
             String antwoord = getUserInput().toUpperCase();
-
             if (antwoord.equalsIgnoreCase("/joker")) {
                 gebruikJokerMenu();
                 continue;
             }
+
             antwoordControle.controleAntwoord(antwoord, vraagStrategie);
 
             if (isCorrect) {
                 break;
             } else {
                 attempts++;
-                if (attempts < getMaxAttempts()) {
-                    roepHintProviderAan();
+                if (attempts < maxAttempts) {
+                    if (!monster.isVerslagen()) {
+                        combatStrategy.startCombat(speler, monster);
+                    }
+
+                    if (monster.isVerslagen()) {
+                        roepHintProviderAan();
+                    } else {
+                        System.out.println("Je kunt geen hint krijgen totdat het monster is verslagen!");
+                    }
                 } else {
                     System.out.println("Helaas, je hebt het maximale aantal pogingen bereikt.");
                 }
