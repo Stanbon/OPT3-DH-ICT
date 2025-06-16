@@ -4,8 +4,8 @@ class HintJoker implements Joker {
     @Override
     public void useIn(Kamer kamer) {
         if (!gebruikt) {
-            kamer.activeerKeyHint();
-            gebruikt = true;
+                kamer.activeerKeyHint();
+                gebruikt = true;
         }
         else {
             System.out.println("Je hebt je hint al gebruikt");

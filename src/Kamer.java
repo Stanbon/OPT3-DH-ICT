@@ -64,9 +64,9 @@ abstract class Kamer implements HintProvider, AntwoordObserver {
 
     protected void gebruikJokerMenu() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welke joker wil je gebruiken?");
-        System.out.println("1. HintJoker");
-        System.out.println("2. KeyJoker");
+        System.out.println("Welke joker wil je gebruiken? (Gebruik het nummers!)");
+        System.out.println("1. HintJoker ");
+        System.out.println("2. KeyJoker ");
         String keuze = scanner.nextLine().trim();
 
         switch (keuze) {
@@ -88,8 +88,6 @@ abstract class Kamer implements HintProvider, AntwoordObserver {
 
     public abstract void activeerKeyHint();
 
-    public void markeerAlsCorrect() {
-        isCorrect = true;
-    }
+    public abstract void markeerAlsCorrect();
 
 }
