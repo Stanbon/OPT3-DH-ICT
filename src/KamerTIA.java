@@ -134,4 +134,8 @@ public class KamerTIA extends Kamer implements AntwoordObserver{
     public void activeerKeyHint() {
         System.out.println("");
     }
+    @Override
+    public void markeerAlsCorrect() {
+        isCorrect = true;
+    }
 }
