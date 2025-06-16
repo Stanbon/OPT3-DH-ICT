@@ -52,5 +52,9 @@ public class Speler implements Vechten {
         System.out.println(naam + " ontvangt " + schade + " schade! HP over: " + HP);
         if (HP == 0) System.out.println(naam + " is overleden!");
     }
+    public void voegBeloningToe(Wapen wapen) {
+        this.wapen = wapen;
+        System.out.println(naam + " heeft een beloning ontvangen: " + wapen.voorwerpNaam());
+    }
 
 }
