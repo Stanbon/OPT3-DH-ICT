@@ -23,12 +23,7 @@ public class KamerRetrospective extends Kamer implements AntwoordObserver{
                 new HelpHintProvider(),
                 new FunnyHintProvider()
         );
-        Deur deur = new Deur();
-        ScoreBord scoreBord = new ScoreBord();
-        antwoordControle.voegObserverToe(deur);
-        antwoordControle.voegObserverToe(monster);
-        antwoordControle.voegObserverToe(scoreBord);
-        antwoordControle.voegObserverToe(this);
+
     }
 
     @Override
@@ -39,7 +34,12 @@ public class KamerRetrospective extends Kamer implements AntwoordObserver{
                 gebruikJokerMenu();
                 continue;
             }
-
+            Deur deur = new Deur();
+            ScoreBord scoreBord = new ScoreBord();
+            antwoordControle.voegObserverToe(deur);
+            antwoordControle.voegObserverToe(monster);
+            antwoordControle.voegObserverToe(scoreBord);
+            antwoordControle.voegObserverToe(this);
             antwoordControle.controleAntwoord(antwoord, vraagStrategie);
 
             if (isCorrect) {
