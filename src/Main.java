@@ -1,4 +1,6 @@
 import ISP.Vuist;
+import ISP.Wapen;
+import ISP.Zwaard;
 
 import java.util.Scanner;
 public class Main {
@@ -69,7 +71,12 @@ public class Main {
         Spel spel = new Spel();
 
         System.out.println("Welkom in de kamers. Ik ben Kamerman, je spel leider.");
-        Speler speler = new Speler(0,"Stan", "levend", 0, 3, 100, new Vuist());
+        System.out.println("Welkom in de kamers. Ik ben Kamerman, je spel leider.");
+        System.out.println("Vul je naam in om te beginnen:");
+        Scanner scanner = new Scanner(System.in);
+        String naam = scanner.nextLine().trim();
+
+        Speler speler = new Speler(0, naam, "levend", 0, 3, 100,new Vuist());
         spel.voegSpelerToe(speler);
         CombatStrategy strategy = new TurnBasedCombat();
        /* speler.saveToDatabase();
