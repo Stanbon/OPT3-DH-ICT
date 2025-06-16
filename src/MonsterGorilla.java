@@ -3,7 +3,7 @@ public class MonsterGorilla implements Monster, AntwoordObserver {
     private int hp = 80;
     private final String naam = "Gorilla";
     private boolean verslagen = false;
-    private final int schadeWaarde = 14;
+    private final int schadeWaarde = 12;
 
     @Override
     public void update(boolean correctAntwoord) {
