@@ -1,9 +1,9 @@
 public class MonsterTeemo implements Monster, AntwoordObserver {
 
-    private int hp = 80;
+    private int hp = 70;
     private final String naam = "Teemo";
     private boolean verslagen = false;
-    private final int schadeWaarde = 12;
+    private final int schadeWaarde = 10;
 
     @Override
     public void update(boolean correctAntwoord) {
