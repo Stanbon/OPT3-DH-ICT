@@ -1,9 +1,9 @@
     public class MonsterDraak implements Monster, AntwoordObserver {
 
-        private int hp = 80;
+        private int hp = 100;
         private final String naam = "Draak";
         private boolean verslagen = false;
-        private final int schadeWaarde = 16;
+        private final int schadeWaarde = 14;
 
         @Override
         public void update(boolean correctAntwoord) {

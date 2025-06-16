@@ -1,6 +1,6 @@
 public class MonsterScope implements Monster, AntwoordObserver {
 
-    private int hp = 80;
+    private int hp = 40;
     private final String naam = "Scope Creep";
     private boolean verslagen = false;
     private final int schadeWaarde = 6;
