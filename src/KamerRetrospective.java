@@ -16,8 +16,8 @@ public class KamerRetrospective extends Kamer implements AntwoordObserver{
         this.combatStrategy = combatStrategy;
         this.monster = new MonsterGorilla();
 
-        String vraag = "Geef antwoord op de volgende vraag: \nWat is het doel van een retrospective?";
-        String antwoord = "Het team kijkt terug op de sprint en bedenkt verbeterpunten";
+        String vraag = "Geef antwoord op de volgende vraag: \nWat is het doel van een retrospective? \nNoem 2 doelen op in alfabetisch volgorde";
+        String antwoord = "terugkijken verbeterpunten";
         this.vraagStrategie = new OpenVraag(vraag, antwoord);
         this.hintProviders = List.of(
                 new HelpHintProvider(),
@@ -127,7 +127,11 @@ public class KamerRetrospective extends Kamer implements AntwoordObserver{
 
     }
     @Override
+    public void markeerAlsCorrect() {
+        isCorrect = true;
+    }
+    @Override
     public void activeerKeyHint() {
-        System.out.println("");
+        System.out.println("Het is een moment om te leren van de sprint.");
     }
 }
