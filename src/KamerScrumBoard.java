@@ -126,12 +126,15 @@ public class KamerScrumBoard extends Kamer implements AntwoordObserver{
     public void geefHint() {
 
     }
-    @Override
-    public void markeerAlsCorrect() {
-        isCorrect = true;
-    }
+
     @Override
     public void activeerKeyHint() {
         System.out.println("Wat is de gebruikelijke volgorde van de kolommen?");
+    }
+
+
+    @Override
+    public void markeerAlsCorrect() {
+        isCorrect = true;
     }
 }

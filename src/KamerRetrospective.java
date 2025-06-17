@@ -127,11 +127,12 @@ public class KamerRetrospective extends Kamer implements AntwoordObserver{
 
     }
     @Override
-    public void markeerAlsCorrect() {
-        isCorrect = true;
-    }
-    @Override
     public void activeerKeyHint() {
         System.out.println("Het is een moment om te leren van de sprint.");
+    }
+
+    @Override
+    public void markeerAlsCorrect() {
+        isCorrect = true;
     }
 }
