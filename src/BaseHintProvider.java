@@ -3,10 +3,17 @@ import java.util.Random;
 
 public abstract class BaseHintProvider implements HintProvider {
     protected final List<String> hints;
+    protected final String vraagTekst;
     private final Random random = new Random();
 
-    public BaseHintProvider(List<String> hints) {
+    public BaseHintProvider(List<String> hints, String vraagTekst) {
         this.hints = hints;
+        this.vraagTekst = vraagTekst;
+    }
+
+    @Override
+    public void vraagHint() {
+        System.out.println(vraagTekst);
     }
 
     @Override

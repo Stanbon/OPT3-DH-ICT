@@ -1,3 +1,4 @@
+import ISP.Medicijn;
 import ISP.Wapen;
 
 public class Speler implements Vechten {
@@ -72,6 +73,11 @@ public class Speler implements Vechten {
             }
         }
         return true;
+    }
+
+    public void voegGeneesmiddelToe(Medicijn geneesmiddel) {
+        this.HP = geneesmiddel.herstelHP(this.HP, geneesmiddel.herstel);
+        System.out.println(naam + " heeft een beloning ontvangen: " + geneesmiddel.voorwerpNaam());
     }
 
 }
