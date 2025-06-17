@@ -17,7 +17,6 @@ public class KamerScrumBoard extends Kamer implements AntwoordObserver{
         this.monster = new MonsterTijger();
 
         String vraag = "Juist of onjuist: Op een scrumboard verplaatst een taak zich van 'Te Doen' naar 'Bezig' naar 'Klaar' naarmate het werk vordert.";
-        String antwoord = "Juist";
         this.vraagStrategie = new WaarOnwaarVraag(vraag, true);
         this.hintProviders = List.of(
                 new HelpHintProvider(),
@@ -116,6 +115,14 @@ public class KamerScrumBoard extends Kamer implements AntwoordObserver{
         return true;
     }
 
+    @Override
+    public boolean kanAssistentJokerGebruiken() {
+        return false;
+    }
+
+    @Override
+    public void assistentieActivatie() {
+    }
 
     @Override
     public void vraagHint() {

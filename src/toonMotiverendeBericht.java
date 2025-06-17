@@ -1,0 +1,3 @@
+interface toonMotiverendeBericht {
+    void motiverendeBericht();
+}

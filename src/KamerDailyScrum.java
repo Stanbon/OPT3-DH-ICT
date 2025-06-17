@@ -136,17 +136,23 @@ public class KamerDailyScrum extends Kamer implements AntwoordObserver {
             return true;
         }
 
+    @Override
+    public boolean kanAssistentJokerGebruiken() {
+        return false;
+    }
+
+    @Override
+    public void markeerAlsCorrect() {
+        isCorrect = true;
+    }
 
     @Override
     public void activeerKeyHint() {
         System.out.println("Het gaat over de dagelijkse planning van het team.");
     }
 
-
-
     @Override
-    public void markeerAlsCorrect() {
-        isCorrect = true;
+    public void assistentieActivatie() {
     }
 }
 
