@@ -1,59 +1,61 @@
+import ISP.Vuist;
+
+import java.sql.*;
+
 public class SpelerDatabase {
 
-    /*
-    public void saveToDatabase() {
-        String sql = "INSERT INTO speler (spelerid, naam, status, positie, levens, HP) VALUES (?, ?, ?, ?, ?, ?)";
-        try (Connection conn = Database.connectDatabase();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, id);
-            stmt.setString(2, naam);
-            stmt.setString(3, status);
-            stmt.setInt(4, positie);
-            stmt.setInt(5, levens);
-            stmt.setInt(6, HP);
-
-            stmt.executeUpdate();
-            System.out.println("Speler saved to database.");
-
-        } catch (SQLException e) {
-            System.err.println("Failed to save Speler: " + e.getMessage());
-        }
-    }
-    */
-
-    /*
-    public static Speler loadFromDatabase(int spelerid) {
-        String sql = "SELECT * FROM speler WHERE spelerid = ?";
+    public static Speler createSpeler(String naam) {
+        String sql = "SELECT * FROM speler WHERE naam = ?";
 
         try (Connection conn = Database.connectDatabase();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, spelerid);
+            stmt.setString(1, naam);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    int id = rs.getInt("id");
-                    String naam = rs.getString("naam");
-                    String status = rs.getString("status");
+                    int id = rs.getInt("speler_id");
                     int positie = rs.getInt("positie");
                     int levens = rs.getInt("levens");
                     int HP = rs.getInt("HP");
+                    String status = rs.getString("status");
 
-                    return new Speler(id, naam, status, positie, levens, HP, new Vuist()); // or appropriate Wapen
+                    return new Speler(id, naam, status, positie, levens, HP, new Vuist());
+                }
+            }
 
-                } else {
-                    System.out.println("No speler found with id: " + spelerid);
+            // Speler bestaat niet → maak nieuwe speler aan
+            String insert = "INSERT INTO speler (naam, positie, levens, status, HP) VALUES (?, ?, ?, ?, ?)";
+            try (PreparedStatement insertStmt = conn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS)) {
+                int positie = 0;
+                int levens = 3;
+                int HP = 100;
+                String status = "levend";
+                insertStmt.setString(1, naam);
+                insertStmt.setInt(2, positie);
+                insertStmt.setInt(3, levens);
+                insertStmt.setString(4, status);
+                insertStmt.setInt(5, HP);
+
+                insertStmt.executeUpdate();
+
+                try (ResultSet generatedKeys = insertStmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        int id = generatedKeys.getInt(1);
+                        return new Speler(id, naam, status, positie, levens, HP, new Vuist());
+                    }
                 }
             }
 
         } catch (SQLException e) {
-            System.err.println("Failed to load Speler: " + e.getMessage());
+            System.err.println("Fout bij zoeken of maken speler: " + e.getMessage());
         }
 
         return null;
     }
-    */
+
+
+
 
     /*
     public void updateLevensInDatabase(int newLevens) {
