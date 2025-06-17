@@ -31,7 +31,9 @@ public class Database {
                     speler_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     naam TEXT NOT NULL,
                     positie INTEGER NOT NULL,
-                    levens INTEGER NOT NULL
+                    levens INTEGER NOT NULL,
+                    status TEXT NOT NULL,
+                    HP INTEGER NOT NULL
                 );
                 """;
 
