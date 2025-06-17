@@ -116,6 +116,15 @@ class KamerReview extends Kamer implements AntwoordObserver{
     }
 
     @Override
+    public boolean kanAssistentJokerGebruiken() {
+        return false;
+    }
+
+    @Override
+    public void assistentieActivatie() {
+    }
+
+    @Override
     public void vraagHint() {
 
     }

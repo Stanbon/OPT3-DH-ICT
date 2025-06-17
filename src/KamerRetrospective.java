@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.Scanner;
 
-public class KamerRetrospective extends Kamer implements AntwoordObserver{
+public class KamerRetrospective extends Kamer implements AntwoordObserver, toonHulpmiddel, toonMotiverendeBericht{
 
     private final CombatStrategy combatStrategy;
     private final Speler speler;
@@ -116,6 +116,27 @@ public class KamerRetrospective extends Kamer implements AntwoordObserver{
         return false;
     }
 
+    @Override
+    public boolean kanAssistentJokerGebruiken() {
+        return true;
+    }
+
+    @Override
+    public void hulpmiddel() {
+        System.out.println("Het eerste woord heeft 11 woorden en het tweede heeft 14 woorden");
+    }
+
+    @Override
+    public void motiverendeBericht() {
+        System.out.println("Kom op speler ik heb vertrouwen in jouw!");
+    }
+
+    @Override
+    public void assistentieActivatie() {
+        activeerKeyHint();
+        hulpmiddel();
+        motiverendeBericht();
+    }
 
     @Override
     public void vraagHint() {

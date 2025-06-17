@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.Scanner;
 
-class KamerPlanning extends Kamer implements AntwoordObserver{
+class KamerPlanning extends Kamer implements AntwoordObserver, toonHulpmiddel, toonMotiverendeBericht{
     private final CombatStrategy combatStrategy;
     private final Speler speler;
     private boolean isCorrect;
@@ -114,8 +114,29 @@ class KamerPlanning extends Kamer implements AntwoordObserver{
             return false;
         }
 
+    @Override
+    public boolean kanAssistentJokerGebruiken() {
+        return true;
+    }
 
-        @Override
+    @Override
+    public void hulpmiddel() {
+        System.out.println("Het eerste woord heeft 7 letters en het tweede woord heeft ook 7 letters");
+    }
+
+    @Override
+    public void motiverendeBericht() {
+        System.out.println("Dan denk je als een echte product owner!");
+    }
+
+    @Override
+    public void assistentieActivatie() {
+        activeerKeyHint();
+        hulpmiddel();
+        motiverendeBericht();
+    }
+
+    @Override
         public void vraagHint() {
 
         }
@@ -130,6 +151,7 @@ class KamerPlanning extends Kamer implements AntwoordObserver{
     }
         @Override
         public void activeerKeyHint() {
-            System.out.println("testing keyhint lol");
+            System.out.println("Het is een lijst met items die het team kan oppakken.");
         }
     }
+

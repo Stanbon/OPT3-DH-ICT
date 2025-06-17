@@ -115,6 +115,14 @@ public class KamerScrumBoard extends Kamer implements AntwoordObserver{
         return true;
     }
 
+    @Override
+    public boolean kanAssistentJokerGebruiken() {
+        return false;
+    }
+
+    @Override
+    public void assistentieActivatie() {
+    }
 
     @Override
     public void vraagHint() {

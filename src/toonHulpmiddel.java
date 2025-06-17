@@ -1,0 +1,3 @@
+interface toonHulpmiddel {
+    void hulpmiddel();
+}

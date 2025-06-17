@@ -116,6 +116,15 @@ public class KamerTIA extends Kamer implements AntwoordObserver{
         return false;
     }
 
+    @Override
+    public boolean kanAssistentJokerGebruiken() {
+        return false;
+    }
+
+
+    @Override
+    public void assistentieActivatie() {
+    }
 
     @Override
     public void vraagHint() {
@@ -134,13 +143,4 @@ public class KamerTIA extends Kamer implements AntwoordObserver{
     public void activeerKeyHint() {
         System.out.println("");
     }
-
-
-
-    @Override
-    public void markeerAlsCorrect() {
-        isCorrect = true;
-    }
-
-
 }
