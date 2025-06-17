@@ -125,12 +125,7 @@ class KamerPlanning extends Kamer implements AntwoordObserver{
 
         }
         @Override
-    public void markeerAlsCorrect() {
-        isCorrect = true;
-    }
-        @Override
         public void activeerKeyHint() {
-            System.out.println("Het is een lijst met items die het team kan oppakken.");
+            System.out.println("testing keyhint lol");
         }
-    }
     }

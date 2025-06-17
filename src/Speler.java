@@ -56,5 +56,22 @@ public class Speler implements Vechten {
         this.wapen = wapen;
         System.out.println(naam + " heeft een beloning ontvangen: " + wapen.voorwerpNaam());
     }
+    private boolean[] voltooideKamers = new boolean[6];
+
+    public void markeerVoltooid(int kamerIndex) {
+        if (kamerIndex >= 0 && kamerIndex < voltooideKamers.length) {
+            voltooideKamers[kamerIndex] = true;
+        }
+    }
+
+
+    public boolean zijnKamersVoltooid() {
+        for (int i = 0; i <= 4; i++) {
+            if (!voltooideKamers[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }
