@@ -1,3 +1,4 @@
+import ISP.Medicijn;
 import ISP.Wapen;
 
 public class Speler implements Vechten {
@@ -51,6 +52,32 @@ public class Speler implements Vechten {
         status = HP > 0 ? "Levend" : "Dood";
         System.out.println(naam + " ontvangt " + schade + " schade! HP over: " + HP);
         if (HP == 0) System.out.println(naam + " is overleden!");
+    }
+    public void voegBeloningToe(Wapen wapen) {
+        this.wapen = wapen;
+        System.out.println(naam + " heeft een beloning ontvangen: " + wapen.voorwerpNaam());
+    }
+    private boolean[] voltooideKamers = new boolean[6];
+
+    public void markeerVoltooid(int kamerIndex) {
+        if (kamerIndex >= 0 && kamerIndex < voltooideKamers.length) {
+            voltooideKamers[kamerIndex] = true;
+        }
+    }
+
+
+    public boolean zijnKamersVoltooid() {
+        for (int i = 0; i <= 4; i++) {
+            if (!voltooideKamers[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void voegGeneesmiddelToe(Medicijn geneesmiddel) {
+        this.HP = geneesmiddel.herstelHP(this.HP, geneesmiddel.herstel);
+        System.out.println(naam + " heeft een beloning ontvangen: " + geneesmiddel.voorwerpNaam());
     }
 
 }
