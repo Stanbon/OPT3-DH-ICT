@@ -76,7 +76,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String naam = scanner.nextLine().trim();
 
-        Speler speler = new Speler(0, naam, "levend", 0, 3, 100,new Vuist());
+        Speler speler = SpelerDatabase.createSpeler(naam);
+
         spel.voegSpelerToe(speler);
         CombatStrategy strategy = new TurnBasedCombat();
        /* speler.saveToDatabase();
