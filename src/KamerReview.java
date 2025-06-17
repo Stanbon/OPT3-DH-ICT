@@ -124,8 +124,16 @@ class KamerReview extends Kamer implements AntwoordObserver{
     public void geefHint() {
 
     }
+
     @Override
     public void activeerKeyHint() {
-        System.out.println("");
+        System.out.println("Gaat de Sprint Review vooral over de voortgang van het team?");
+    }
+
+
+
+    @Override
+    public void markeerAlsCorrect() {
+        isCorrect = true;
     }
 }

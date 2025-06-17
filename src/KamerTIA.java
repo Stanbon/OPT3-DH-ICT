@@ -30,7 +30,7 @@ public class KamerTIA extends Kamer implements AntwoordObserver{
         while (attempts < maxAttempts && !isCorrect) {
             String antwoord = getUserInput().toUpperCase();
             if (antwoord.equalsIgnoreCase("/joker")) {
-                gebruikJokerMenu();
+                System.out.println("Geen hints mogelijk!");
                 continue;
             }
 
@@ -130,4 +130,13 @@ public class KamerTIA extends Kamer implements AntwoordObserver{
     public void activeerKeyHint() {
         System.out.println("");
     }
+
+
+
+    @Override
+    public void markeerAlsCorrect() {
+        isCorrect = true;
+    }
+
+
 }
