@@ -1,10 +1,5 @@
-public class Vuist implements Wapen{
-    @Override
-    public int geefSchade() {
-        return 10;
-    }
-    @Override
-    public String voorwerpNaam(){
-        return "Vuist";
+public class Vuist extends BaseWapen {
+    public Vuist() {
+        super(10, "Vuist");
     }
 }
