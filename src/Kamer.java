@@ -5,12 +5,7 @@
         protected VraagStrategie vraagStrategie;
 
 
-        public void setVraagStrategie(VraagStrategie vraagStrategie) {
-            this.vraagStrategie = vraagStrategie;
-        }
 
-        protected int attempts = 0;
-        protected boolean isCorrect = false;
         protected List<HintProvider> hintProviders;
         protected final KeyJoker keyJoker = new KeyJoker();
         protected final HintJoker hintJoker = new HintJoker();
@@ -21,10 +16,7 @@
             jokerService.gebruikJoker(this);
         }
         //Template method
-        /**
-         * Start de kamer met de introductie, opdracht, controleer antwoord, resultaat en feedback.
-         * Template Method Pattern
-         */
+
         public final void startKamer(Speler speler) {
             printIntroductie();
             printOpdracht();
@@ -35,9 +27,7 @@
         }
 
 
-        protected int getMaxAttempts() {
-            return 3;
-        }
+
 
         protected String getUserInput() {
             System.out.print("Je antwoord: ");
@@ -47,20 +37,14 @@
 
         public abstract void printFeedback();
 
-        /**
-         * Print het resultaat van het antwoord.
-         */
+
         public abstract void printResultaat();
 
         public abstract void printOpdracht();
 
-        /**
-         * Print de introductie van de kamer.
-         */
+
         public abstract void printIntroductie();
-        /**
-         * Controleer het antwoord van de gebruiker.
-         */
+
         public abstract void controleerAntwoord();
 
         public abstract void roepHintProviderAan();

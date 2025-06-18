@@ -21,15 +21,10 @@ public class Speler implements Vechten {
 
     public String getStatus() {  return status; }
 
-    public int getLevens() { return levens; }
-
-    public int getPositie() { return positie; }
-
     public int setPositie(int newPositie) { return this.positie = newPositie;}
 
     public int getHP() { return HP; }
-    
-    public Wapen getWapen() { return wapen; }
+
 
     @Override
     public String getNaam() { return naam; }

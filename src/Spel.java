@@ -17,16 +17,8 @@ public class Spel {
         this.spelers.add(speler);
     }
 
-    public void verwijderSpeler(Speler speler){
-        this.spelers.remove(speler);
-    }
-
     public void voegKamerToe(Kamer kamer){
         this.kamers.add(kamer);
-    }
-
-    public void verwijderKamer(Kamer kamer){
-        this.kamers.remove(kamer);
     }
 
     public ArrayList<Kamer> getKamers() {
@@ -35,14 +27,6 @@ public class Spel {
 
     public ArrayList<Speler> getSpelers() {
         return spelers;
-    }
-
-    public void startSpel(){
-        System.out.println("Het spel is gestart!");
-    }
-
-    public void stopSpel(){
-        System.out.println("Het spel is gestopt!");
     }
 
 

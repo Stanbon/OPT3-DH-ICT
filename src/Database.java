@@ -17,7 +17,7 @@ public class Database {
         return connection;
     }
 
-    // ✅ Deze methode maakt de tabellen aan
+
     public static void createTables() {
         String createKamerTable = """
                 CREATE TABLE IF NOT EXISTS kamer (
@@ -58,6 +58,6 @@ public class Database {
     }
 
     public static void main(String[] args) throws SQLException {
-        createTables();  // 🔧 Aangeroepen vanuit main()
+        createTables();
     }
 }
