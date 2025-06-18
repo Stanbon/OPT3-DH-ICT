@@ -1,6 +1,3 @@
-import ISP.Vuist;
-import ISP.Wapen;
-import ISP.Zwaard;
 
 import java.util.Scanner;
 public class Main {
@@ -30,33 +27,33 @@ public class Main {
                 switch (keuzeChar) {
                     case '1':
                         spel.getSpelers().get(0).setPositie(1);
-                        spel.getKamers().get(0).startKamer();
+                        spel.getKamers().get(0).startKamer(spel.getSpelers().get(0));
                         spel.getSpelers().get(0).markeerVoltooid(0);
                         break;
                     case '2':
                         spel.getSpelers().get(0).setPositie(2);
-                        spel.getKamers().get(1).startKamer();
+                        spel.getKamers().get(1).startKamer(spel.getSpelers().get(0));
                         spel.getSpelers().get(0).markeerVoltooid(1);
                         break;
                     case '3':
                         spel.getSpelers().get(0).setPositie(3);
-                        spel.getKamers().get(2).startKamer();
+                        spel.getKamers().get(2).startKamer(spel.getSpelers().get(0));
                         spel.getSpelers().get(0).markeerVoltooid(2);
                         break;
                     case '4':
                         spel.getSpelers().get(0).setPositie(4);
-                        spel.getKamers().get(3).startKamer();
+                        spel.getKamers().get(3).startKamer(spel.getSpelers().get(0));
                         spel.getSpelers().get(0).markeerVoltooid(3);
                         break;
                     case '5':
                         spel.getSpelers().get(0).setPositie(5);
-                        spel.getKamers().get(4).startKamer();
+                        spel.getKamers().get(4).startKamer(spel.getSpelers().get(0));
                         spel.getSpelers().get(0).markeerVoltooid(4);
                         break;
                     case '6':
                         if (spel.getSpelers().get(0).zijnKamersVoltooid()) {
                          spel.getSpelers().get(0).setPositie(6);
-                         spel.getKamers().get(5).startKamer();
+                         spel.getKamers().get(5).startKamer(spel.getSpelers().get(0));
                          spel.getSpelers().get(0).markeerVoltooid(5); }
                          else { System.out.println("Je moet kamer 1 tot 5 voltooid hebben voordat je kamer 6 in kan"); }
                     default:

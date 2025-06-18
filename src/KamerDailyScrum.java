@@ -11,6 +11,7 @@ public class KamerDailyScrum extends Kamer implements AntwoordObserver {
     private final int maxAttempts = 3;
     private final AntwoordControle antwoordControle = new AntwoordControle();
 
+
     public KamerDailyScrum(Speler speler, CombatStrategy combatStrategy) {
         this.speler = speler;
         this.combatStrategy = combatStrategy;
@@ -111,6 +112,7 @@ public class KamerDailyScrum extends Kamer implements AntwoordObserver {
             this.isCorrect = correctAntwoord;
             if (correctAntwoord) {
                 System.out.println("Dat is correct!");
+                setBeloning(new WapenBeloning(new Zwaard()));
             } else {
                 System.out.println("Dat is incorrect!");
             }

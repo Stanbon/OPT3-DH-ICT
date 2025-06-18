@@ -1,5 +1,3 @@
-import ISP.Vuist;
-
 import java.sql.*;
 
 public class SpelerDatabase {
@@ -20,7 +18,7 @@ public class SpelerDatabase {
                     int HP = rs.getInt("HP");
                     String status = rs.getString("status");
 
-                    return new Speler(id, naam, status, positie, levens, HP, new Vuist());
+                    return new Speler(id, naam, status, positie, levens, HP, (Wapen) new Vuist());
                 }
             }
 
@@ -42,7 +40,7 @@ public class SpelerDatabase {
                 try (ResultSet generatedKeys = insertStmt.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
                         int id = generatedKeys.getInt(1);
-                        return new Speler(id, naam, status, positie, levens, HP, new Vuist());
+                        return new Speler(id, naam, status, positie, levens, HP, (Wapen) new Vuist());
                     }
                 }
             }

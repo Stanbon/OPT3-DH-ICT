@@ -105,6 +105,7 @@ class KamerReview extends Kamer implements AntwoordObserver{
         this.isCorrect = correctAntwoord;
         if (correctAntwoord) {
             System.out.println("Dat is correct!");
+            setBeloning(new HealingBeloning(100));
         } else {
             System.out.println("Dat is incorrect!");
         }

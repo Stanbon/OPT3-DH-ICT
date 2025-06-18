@@ -26,12 +26,13 @@
          * Start de kamer met de introductie, opdracht, controleer antwoord, resultaat en feedback.
          * Template Method Pattern
          */
-        public final void startKamer() {
+        public final void startKamer(Speler speler) {
             printIntroductie();
             printOpdracht();
             controleerAntwoord();
             printResultaat();
             printFeedback();
+            geefBeloning(speler);
         }
 
 
@@ -98,5 +99,18 @@
         public abstract void markeerAlsCorrect();
 
         public abstract void assistentieActivatie();
+
+        protected Beloning kamerBeloning;
+
+        public void setBeloning(Beloning beloning) {
+            this.kamerBeloning = beloning;
+        }
+
+        protected void geefBeloning(Speler speler) {
+            if (kamerBeloning != null) {
+                kamerBeloning.pasToeOp(speler);
+            }
+        }
+
 
     }
