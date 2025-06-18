@@ -1,10 +1,5 @@
-public class Zwaard implements Wapen{
-    @Override
-    public int geefSchade() {
-        return 25;
-    }
-    @Override
-    public String voorwerpNaam(){
-        return "Zwaard";
+public class Zwaard extends BaseWapen {
+    public Zwaard() {
+        super(25, "Zwaard");
     }
 }
