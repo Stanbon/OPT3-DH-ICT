@@ -9,7 +9,7 @@ public class Main {
             showPrompt();
             String input = scanner.nextLine();
 
-            // actie van input.....
+
             if (input.equals("/status")) {
 
                 System.out.println("Speler status is " + spel.getSpelers().getFirst().getStatus() + " met HP: " + spel.getSpelers().getLast().getHP());
@@ -76,7 +76,6 @@ public class Main {
         Spel spel = new Spel();
 
         System.out.println("Welkom in de kamers. Ik ben Kamerman, je spel leider.");
-        System.out.println("Welkom in de kamers. Ik ben Kamerman, je spel leider.");
         System.out.println("Vul je naam in om te beginnen:");
         Scanner scanner = new Scanner(System.in);
         String naam = scanner.nextLine().trim();
@@ -85,14 +84,7 @@ public class Main {
 
         spel.voegSpelerToe(speler);
         CombatStrategy strategy = new TurnBasedCombat();
-       /* speler.saveToDatabase();
-        speler.updatePositieInDatabase(speler.getPositie());
-       speler.updateLevensInDatabase(speler.getLevens()); */
 
-
-        Monster monster = new MonsterDraak();
-        Monster monster1 = new MonsterGorilla();
-        Monster monster2 = new MonsterTeemo();
 
         Kamer kamer = new KamerPlanning(speler, strategy);
         Kamer kamer1 = new KamerDailyScrum(speler, strategy);

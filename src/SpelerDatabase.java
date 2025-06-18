@@ -22,7 +22,7 @@ public class SpelerDatabase {
                 }
             }
 
-            // Speler bestaat niet → maak nieuwe speler aan
+
             String insert = "INSERT INTO speler (naam, positie, levens, status, HP) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement insertStmt = conn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS)) {
                 int positie = 0;
