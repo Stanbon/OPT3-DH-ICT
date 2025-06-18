@@ -15,12 +15,11 @@
         protected final KeyJoker keyJoker = new KeyJoker();
         protected final HintJoker hintJoker = new HintJoker();
         protected final assistentJoker assistentJoker = new assistentJoker();
+        protected final JokerService jokerService = new JokerService();
 
-
-
-
-
-
+        protected void gebruikJokerMenu() {
+            jokerService.gebruikJoker(this);
+        }
         //Template method
         /**
          * Start de kamer met de introductie, opdracht, controleer antwoord, resultaat en feedback.
@@ -63,30 +62,6 @@
          * Controleer het antwoord van de gebruiker.
          */
         public abstract void controleerAntwoord();
-
-        protected void gebruikJokerMenu() {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Welke joker wil je gebruiken? (Gebruik het nummers!)");
-            System.out.println("1. HintJoker ");
-            System.out.println("2. KeyJoker ");
-            System.out.println("3. AssistentJoker");
-            String keuze = scanner.nextLine().trim();
-
-            switch (keuze) {
-                case "1":
-                    hintJoker.useIn(this);
-                    break;
-                case "2":
-                    keyJoker.useIn(this);
-                    break;
-                case "3":
-                    assistentJoker.useIn(this);
-                    break;
-                default:
-                    System.out.println("Ongeldige keuze.");
-            }
-        }
-
 
         public abstract void roepHintProviderAan();
 
