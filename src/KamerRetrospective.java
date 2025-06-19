@@ -17,7 +17,7 @@ public class KamerRetrospective extends Kamer implements AntwoordObserver, toonH
         this.monster = new MonsterGorilla();
 
         String vraag = "Geef antwoord op de volgende vraag: \nWat is het doel van een retrospective? \nNoem 2 doelen op in alfabetisch volgorde";
-        String antwoord = "terugkijken verbeterpunten";
+        String antwoord = "reflecteren verbeterpunten";
         this.vraagStrategie = new OpenVraag(vraag, antwoord);
         this.hintProviders = List.of(
                 new HelpHintProvider(),
@@ -124,7 +124,7 @@ public class KamerRetrospective extends Kamer implements AntwoordObserver, toonH
 
     @Override
     public void hulpmiddel() {
-        System.out.println("Het eerste woord heeft 11 woorden en het tweede heeft 14 woorden");
+        System.out.println("Het eerste woord heeft 11 letters en het tweede heeft 14 letters");
     }
 
     @Override

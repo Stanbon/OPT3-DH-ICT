@@ -16,7 +16,7 @@ public class KamerTIA extends Kamer implements AntwoordObserver{
         this.combatStrategy = combatStrategy;
         this.monster = new MonsterDraak();
 
-        String vraag = "Ja of Nee: Zijn de drie pijlers van scrum onderling afhankelijk en noodzakelijk voor empirische procescontrole?";
+        String vraag = "Ja of Nee: Zijn de drie pijlers van scrum onderling afhankelijk voor procescontrole?";
         boolean antwoord = true;
         this.vraagStrategie = new WaarOnwaarVraag(vraag, antwoord);
         this.hintProviders = List.of(
