@@ -27,6 +27,12 @@ public class KamerTIA extends Kamer implements AntwoordObserver{
 
     @Override
     public void controleerAntwoord() {
+        Deur deur = new Deur();
+        ScoreBord scoreBord = new ScoreBord();
+        antwoordControle.voegObserverToe(deur);
+        antwoordControle.voegObserverToe(monster);
+        antwoordControle.voegObserverToe(scoreBord);
+        antwoordControle.voegObserverToe(this);
         while (attempts < maxAttempts && !isCorrect) {
             String antwoord = getUserInput().toUpperCase();
             if (antwoord.equalsIgnoreCase("/joker")) {
@@ -34,15 +40,12 @@ public class KamerTIA extends Kamer implements AntwoordObserver{
                 continue;
             }
 
-            Deur deur = new Deur();
-            ScoreBord scoreBord = new ScoreBord();
-            antwoordControle.voegObserverToe(deur);
-            antwoordControle.voegObserverToe(monster);
-            antwoordControle.voegObserverToe(scoreBord);
-            antwoordControle.voegObserverToe(this);
+
             antwoordControle.controleAntwoord(antwoord, vraagStrategie);
 
             if (isCorrect) {
+                System.out.println("Goed gedaan! Je hebt het spel gewonnen!");
+                System.exit(0);
                 break;
             } else {
                 attempts++;
