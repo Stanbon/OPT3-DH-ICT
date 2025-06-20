@@ -28,18 +28,21 @@ public class KamerRetrospective extends Kamer implements AntwoordObserver, toonH
 
     @Override
     public void controleerAntwoord() {
+
+        Deur deur = new Deur();
+        ScoreBord scoreBord = new ScoreBord();
+        antwoordControle.voegObserverToe(deur);
+        antwoordControle.voegObserverToe(monster);
+        antwoordControle.voegObserverToe(scoreBord);
+        antwoordControle.voegObserverToe(this);
+
         while (attempts < maxAttempts && !isCorrect) {
             String antwoord = getUserInput().toUpperCase();
             if (antwoord.equalsIgnoreCase("/joker")) {
                 gebruikJokerMenu();
                 continue;
             }
-            Deur deur = new Deur();
-            ScoreBord scoreBord = new ScoreBord();
-            antwoordControle.voegObserverToe(deur);
-            antwoordControle.voegObserverToe(monster);
-            antwoordControle.voegObserverToe(scoreBord);
-            antwoordControle.voegObserverToe(this);
+
             antwoordControle.controleAntwoord(antwoord, vraagStrategie);
 
             if (isCorrect) {

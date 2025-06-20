@@ -34,18 +34,21 @@ public class KamerDailyScrum extends Kamer implements AntwoordObserver {
 
     @Override
     public void controleerAntwoord() {
+
+        Deur deur = new Deur();
+        ScoreBord scoreBord = new ScoreBord();
+        antwoordControle.voegObserverToe(this);
+        antwoordControle.voegObserverToe(deur);
+        antwoordControle.voegObserverToe(monster);
+        antwoordControle.voegObserverToe(scoreBord);
+
         while (attempts < maxAttempts && !isCorrect) {
             String antwoord = getUserInput().toUpperCase();
             if (antwoord.equalsIgnoreCase("/joker")) {
                 gebruikJokerMenu();
                 continue;
             }
-            Deur deur = new Deur();
-            ScoreBord scoreBord = new ScoreBord();
-            antwoordControle.voegObserverToe(this);
-            antwoordControle.voegObserverToe(deur);
-            antwoordControle.voegObserverToe(monster);
-            antwoordControle.voegObserverToe(scoreBord);
+
             antwoordControle.controleAntwoord(antwoord, vraagStrategie);
 
             if (isCorrect) {
